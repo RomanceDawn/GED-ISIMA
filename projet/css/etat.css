@@ -1,0 +1,21 @@
+#mainMenu a:HOVER,a:FOCUS {
+
+    text-shadow: 0px 0px 5px lightsalmon; 
+
+
+}
+
+#mainMenu a:ACTIVE {
+    -webkit-box-shadow: inset 0px 0px 15px 0px grey;
+    box-shadow: inset 0px 0px 15px 0px grey;
+    color: #000;
+    text-shadow: none;
+
+
+}
+
+#mainMenu a:hover {
+    cursor: pointer; 
+    cursor: hand;
+
+}

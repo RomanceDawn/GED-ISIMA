@@ -1,0 +1,75 @@
+/* 
+    Created on : 18 déc. 2014, 00:00:26
+    Author     : Amine
+*/
+
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section {
+    display:block;
+}
+
+html{
+    font-family: sans-serif;
+}
+
+body{
+    background-image: url(../images/wall.jpg);
+    background-attachment:fixed; 
+    background-position: center;
+
+}
+
+
+#corp {
+    overflow: auto;
+/*    -moz-box-shadow: 0px 0px 15px 0px #656565;
+    -webkit-box-shadow: 0px 0px 15px 0px #656565;
+    -o-box-shadow: 0px 0px 15px 0px #656565;
+    box-shadow: 0px 0px 15px 0px #656565;*/
+    background:rgb(241,241,241);
+    background: rgba(214,214,214,0.65);
+
+}
+
+section{
+    position:relative;
+}
+
+
+
+#mainMenu {
+    background: rgb(255,255,255); /* Old browsers */
+    -webkit-border-top-left-radius: 10px;
+    -webkit-border-top-right-radius: 10px;
+    -moz-border-radius-topleft: 10px;
+    -moz-border-radius-topright: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+
+
+#mainMenu li {
+    list-style-type: none;
+    border-width: 0;
+    border-right-width:  1px;
+    border-style: solid;
+    border-color: lightgray;
+}
+
+
+#mainMenu li.flotteDroite {
+    float: right;
+    border-width: 0;
+    border-left-width:  1px;
+    border-style: solid;
+    border-color: lightgray;
+
+}
+
+#mainMenu a {
+    color: #000000;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    background: none;
+}
