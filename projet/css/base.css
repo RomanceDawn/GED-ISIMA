@@ -1,4 +1,4 @@
-/* 
+/*
     Created on : 18 déc. 2014, 00:32:38
     Author     : Amine
 */
@@ -8,23 +8,27 @@ html,body {
 
 #centre {
 
-    width: 700px;
+    width: 70%;
+
     margin: auto;
     margin-bottom: 10px;
+    padding-top:  10px;
 }
 
 #corp {
-    width: 920px;
+    width: 70%;
+    min-width: 610px;
     min-height: 85%;
     margin: auto auto 10px;
-    padding: 10px;
+    padding: 0px;
     overflow: auto;
 }
 
 #mainMenu {
+    min-width: 610px;
     padding:0px;
     margin:auto;
-    width: 940px;
+    width: 70%;
     height:40px;
     line-height:40px;
     margin-bottom: 10px;
@@ -34,8 +38,11 @@ html,body {
 
 #mainMenu li {
     float: left;
+
 }
 
 #mainMenu a {
-    min-width: 90px; 
+    min-width: 90px;   
+    padding-left: 5px;
+    padding-right: 5px;
 }
