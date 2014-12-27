@@ -26,13 +26,14 @@ SET time_zone = "+00:00";
 -- Structure de la table `rapport`
 --
 
-CREATE TABLE IF NOT EXISTS `rapport` (
+CREATE TABLE IF NOT EXISTS `ged_rapport` (
   `id` int(10) NOT NULL,
   `date` date DEFAULT NULL,
   `mots clefs` varchar(200) DEFAULT NULL,
   `nom` varchar(200) DEFAULT NULL,
+  `auteur` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

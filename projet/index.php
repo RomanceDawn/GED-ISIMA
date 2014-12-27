@@ -1,3 +1,3 @@
 <?php      
-  header('Location: php/multiUpload.php');      
+  header('Location: pages/index.php');      
 ?>
