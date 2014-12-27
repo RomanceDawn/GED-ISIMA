@@ -15,3 +15,15 @@ if (!empty($_FILES)) {
     move_uploaded_file($tempFile, $targetFile); //6
 }
   
+?>
+<?php include("../header.php"); ?>
+        <div id="corp">
+            <section id="centre">
+                <form action="multiUpload.php" class="dropzone" id="my-awesome-dropzone">
+                    <div class="fallback">
+                        <input name="file" type="file" multiple />
+                    </div> 
+                </form>
+            </section>
+        </div>
+<?php include("../footer.php"); ?>
