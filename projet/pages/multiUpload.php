@@ -1,4 +1,4 @@
-<?php include("./header.php"); ?>
+<?php include("./header.php");?>
         <div id="corp">
             <section id="centre">
                 <form action="../php/multiUploadManager.php" class="dropzone" id="my-awesome-dropzone">
