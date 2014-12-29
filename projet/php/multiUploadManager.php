@@ -1,30 +1,47 @@
 <?php
-//    header('HTTP/1.1 500 Internal Server Error');
-//    header('Content-type: text/plain');
-//    exit(var_dump($_FILES));
+
+$allowed_types_files = array(
+    "application/pdf",
+    "application/vnd.oasis.opendocument.text",
+    "application/msword",
+    "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+);
+//
+//$allowed_files_extensions = array(
+//    "pdf",
+//    "doc",
+//    "docx",
+//    "odt",
+//    "PDF",
+//    "DOC",
+//    "DOCX",
+//    "ODT",
+//);
+
 if (!empty($_FILES)) {
+
+    if (!in_array($_FILES['file']['type'], $allowed_types_files)) {
+    // || !in_array($extension,$allowed_files_extensions)) 
+        header('HTTP/1.1 500 Internal Server Error');
+        header('Content-type: text/plain');
+        exit("Type de fichier non valide.");
+    }
     include './Rapport.class.php';
     include './QueryManager.class.php';
-
     $date = NULL;
     $auteur = NULL;
     $mots_cles = NULL;
-
+    //$random_id_length = 15;
     $tempFile = $_FILES['file']['tmp_name'];          //3     
     $name_origin = $_FILES['file']['name'];
-    //$extension=substr(strrchr($name_origin,'.'),1) ;
-    $random_id_length = 15;
-
+    $extension = substr(strrchr($name_origin, '.'), 1);
 
 //generate a random id encrypt it and store it in $rnd_id 
     $rnd_id = crypt(uniqid(rand(), 1));
-//to remove any slashes that might have come 
     $rnd_id = strip_tags(stripslashes($rnd_id));
-//Removing any . or / and reversing the string 
     $rnd_id = str_replace(".", "", $rnd_id);
     $rnd_id = strrev(str_replace("/", "", $rnd_id));
-//finally I take the first 10 characters from the $rnd_id 
-    $rnd_id = substr($rnd_id, 0, $random_id_length);
+    //$rnd_id = substr($rnd_id, 0, $random_id_length);
     $name_server = $rnd_id;
 
     $targetPath = "../rapports/";  //4
@@ -33,4 +50,8 @@ if (!empty($_FILES)) {
     $temp = new Rapport($date, $name_origin, $mots_cles, $name_server, $auteur);
     QueryManager::insert($temp);
     move_uploaded_file($tempFile, $targetFile); //6   
+} else {
+    header('HTTP/1.1 500 Internal Server Error');
+    header('Content-type: text/plain');
+    exit("Erreur lors du transfert de fichier.");
 }
