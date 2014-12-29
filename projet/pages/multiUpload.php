@@ -4,8 +4,9 @@
         <script type="text/javascript">
 // "myAwesomeDropzone" is the camelized version of the HTML element's ID
             Dropzone.options.myAwesomeDropzone = {
+                
                 paramName: "file", // The name that will be used to transfer the file
-                maxFilesize: 50, // MB
+                maxFilesize: 64, // MB
                 acceptedFiles: ".pdf,.doc,.docx,.odt,.PDF,.ODT,.DOC,.DOCX",
                 accept: function (file, done) {
 //                    if (file.name == "justinbieber.jpg") {
@@ -16,7 +17,7 @@
                 }
             };
         </script>
-        <form action="../php/multiUploadManager.php" class="dropzone" id="my-awesome-dropzone">
+        <form action="../php/multiUploadManager.php" class="dropzone" id="my-awesome-dropzone" enctype="multipart/form-data">
             <div class="fallback">
                 <input name="file" type="file" multiple />
             </div> 
@@ -25,4 +26,4 @@
 
     </section>
 </div>
-<?php include("./footer.php"); ?>
+<?php  include("./footer.php"); ?>
