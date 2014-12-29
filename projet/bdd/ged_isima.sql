@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Dim 28 Décembre 2014 à 01:43
+-- Généré le :  Lun 29 Décembre 2014 à 18:06
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -27,14 +27,14 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `ged_rapport` (
-  `id` int(10) NOT NULL,
+  `id` int(10) NOT NULL AUTO_INCREMENT,
   `date` date DEFAULT NULL,
   `mots_clefs` varchar(200) DEFAULT NULL,
   `nom_origin` varchar(200) DEFAULT NULL,
   `nom_server` varchar(200) DEFAULT NULL,
   `auteur` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

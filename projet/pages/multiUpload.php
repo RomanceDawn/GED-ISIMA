@@ -6,6 +6,10 @@
                         <input name="file" type="file" multiple />
                     </div> 
                 </form>
+                <?php
+
+
+                ?>
             </section>
         </div>
 <?php include("./footer.php"); ?>
