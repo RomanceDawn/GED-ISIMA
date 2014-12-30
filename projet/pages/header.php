@@ -11,9 +11,8 @@
         <link rel="stylesheet" type="text/css" href="../css/etat.css">
     </head>
     <body>
-        <nav>
+           <nav>
             <ul id="mainMenu">
-                <li><a href="index.php">Index</a></li>
                 <li><a href="simpleUpload.php">Upload Simple</a></li>
                 <li><a href="multiUpload.php">Upload Multiple</a></li>
                 <li><a>Modifier fichier</a></li>
