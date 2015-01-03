@@ -9,11 +9,12 @@
         <link rel="stylesheet" type="text/css" href="../css/base.css">
         <link rel="stylesheet" type="text/css" href="../css/normalize.css">
         <link rel="stylesheet" type="text/css" href="../css/etat.css">
+        <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
     </head>
     <body>
         <nav>
             <ul id="mainMenu">
-                <li><a href="index.php">Index</a></li>
+                <li><a href="index.php"><img src="../images/home.png" alt="Index" /></a></li>
                 <li><a href="simpleUpload.php">Upload Simple</a></li>
                 <li><a href="multiUpload.php">Upload Multiple</a></li>
                 <li><a>Modifier fichier</a></li>

@@ -1,27 +1,25 @@
 <?php
 
-$allowed_types_files = array(
-    "application/pdf",
-    "application/vnd.oasis.opendocument.text",
-    "application/msword",
-    "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-);
-//
-//$allowed_files_extensions = array(
-//    "pdf",
-//    "doc",
-//    "docx",
-//    "odt",
-//    "PDF",
-//    "DOC",
-//    "DOCX",
-//    "ODT",
+//$allowed_types_files = array(
+//    "application/pdf",
+//    "application/vnd.oasis.opendocument.text",
+//    "application/msword",
+//    "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+//    "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
 //);
+//
+$allowed_files_extensions = array(
+    "pdf",
+    "doc",
+    "docx",
+    "odt",
+);
 
 if (!empty($_FILES)) {
-
-    if (!in_array($_FILES['file']['type'], $allowed_types_files)) {
-    // || !in_array($extension,$allowed_files_extensions)) 
+    $name_origin = $_FILES['file']['name'];
+    $extension = substr(strrchr($name_origin, '.'), 1);
+    if (!in_array(strtolower($extension), $allowed_files_extensions)) {
+   
         header('HTTP/1.1 500 Internal Server Error');
         header('Content-type: text/plain');
         exit("Type de fichier non valide.");
@@ -49,7 +47,8 @@ if (!empty($_FILES)) {
 
     $temp = new Rapport($date, $name_origin, $mots_cles, $name_server, $auteur);
     QueryManager::insert($temp);
-    move_uploaded_file($tempFile, $targetFile); //6   
+    move_uploaded_file($tempFile, $targetFile); //6 
+    //echo "1"; //responsetext
 } else {
     header('HTTP/1.1 500 Internal Server Error');
     header('Content-type: text/plain');
