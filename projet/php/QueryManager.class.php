@@ -37,5 +37,17 @@ class QueryManager {
             throw new ErrorException("Erreur avec la base de données.", null, null, null, null, $e1);
         }
     }
-    
+    public static function search($titre) {
+        $requete = "SELECT  * from ged_rapport";
+
+        //echo '<script type="text/javascript"> alert("'. $requete.'"); </script> ';
+        try {
+            $DAO = DataAccessObject::getInstance();
+            $DAO->query($requete);
+            return $DAO->getLastInsertedID();
+        } catch (Exception $e1) {
+            throw new ErrorException("Erreur avec la base de données.", null, null, null, null, $e1);
+        }
+        
+    }
 }
