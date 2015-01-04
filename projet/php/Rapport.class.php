@@ -25,5 +25,8 @@ class Rapport {
         $this->attributs[self::NOM_SERV] = $nom_server;
         $this->attributs[self::AUTEUR] = $auteur;
     }
-
+    
+    public static function delete(int $id){
+        
+    }
 }

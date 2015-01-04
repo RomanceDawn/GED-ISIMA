@@ -46,8 +46,9 @@ if (!empty($_FILES)) {
     $targetFile = $targetPath . $name_server;  //5
 
     $temp = new Rapport($date, $name_origin, $mots_cles, $name_server, $auteur);
-    QueryManager::insert($temp);
+    $id = QueryManager::insert($temp);
     move_uploaded_file($tempFile, $targetFile); //6 
+    echo $id;
     //echo "1"; //responsetext
 } else {
     header('HTTP/1.1 500 Internal Server Error');
