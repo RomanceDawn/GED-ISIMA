@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Lun 29 Décembre 2014 à 18:06
+-- Généré le :  Lun 05 Janvier 2015 à 20:17
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -19,6 +19,17 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `ged_isima`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `ged_compte`
+--
+
+CREATE TABLE IF NOT EXISTS `ged_compte` (
+  `login` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
