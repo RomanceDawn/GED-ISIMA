@@ -10,9 +10,9 @@
 //
 $allowed_files_extensions = array(
     "pdf",
-    "doc",
-    "docx",
-    "odt",
+//    "doc",
+//    "docx",
+//    "odt",
 );
 
 if (!empty($_FILES)) {

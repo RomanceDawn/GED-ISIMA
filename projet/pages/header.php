@@ -19,13 +19,13 @@
         <nav>
             <ul id="mainMenu">
                 <li><a href="index.php"><img src="../images/home.png" alt="Index" /></a></li>
-                <li><a href="simpleUpload.php">Upload Simple</a></li>
-                <li><a href="multiUpload.php">Upload Multiple</a></li>
-                <li><a>Modifier fichier</a></li>
+
                 <?php 
                 if(!empty($_SESSION['login']))
                 {
-                  echo "<li class=\"flotteDroite\"><a href=\"../php/deconnexionManager.php\">Déconnexion</a></li>  ";
+                  echo "                <li><a href=\"simpleUpload.php\">Upload Simple</a></li>
+                <li><a href=\"multiUpload.php\">Upload Multiple</a></li>
+                <li><a>Modifier fichier</a></li><li class=\"flotteDroite\"><a href=\"../php/deconnexionManager.php\">Déconnexion</a></li>  ";
                   
                 }
                 else

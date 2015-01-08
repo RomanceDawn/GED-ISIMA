@@ -1,14 +1,19 @@
-<?php include("./header.php");
+<?php
 
+include("./header.php");
+
+
+if (empty($_SESSION['login'])) {
+    header('Location: ../pages/index.php');
+}
 
 echo'
 <div id="corp">
     <section id="centre"> ';
 
 
-if(!empty($_SESSION['login']))
-{
-    echo'
+
+echo'
     <script src="../javascript/customDropzone.js"></script>
         <form action="../php/multiUploadManager.php" class="dropzone" id="my-awesome-dropzone">
             <div class="fallback">
@@ -19,11 +24,10 @@ if(!empty($_SESSION['login']))
 
 
 ';
-}
+
 
 
 echo'    </section>
 </div>';
 include("./footer.php");
-
 ?>

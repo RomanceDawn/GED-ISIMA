@@ -1,6 +1,10 @@
 <?php
+session_start();
 
-if(!empty($_POST["login"]) && !empty($_POST["password"]))
+if (!empty($_SESSION['login'])) {
+    header('Location: ../pages/index.php');
+}  
+else if(!empty($_POST["login"]) && !empty($_POST["password"]))
 {
   include './QueryManager.class.php';
   $login=$_POST["login"];
@@ -9,7 +13,7 @@ if(!empty($_POST["login"]) && !empty($_POST["password"]))
   echo "co : ".$co;
   if($co!="")
   {
-      session_start();
+      
       $_SESSION['login']=$login;
        header('Location: ../pages/multiUpload.php'); 
        
@@ -21,6 +25,7 @@ if(!empty($_POST["login"]) && !empty($_POST["password"]))
   }
 }
 else {
+    //print_r($_POST);
     header('HTTP/1.1 500 Internal Server Error');
     header('Content-type: text/plain');
     exit("Erreur lors de la connexion.");

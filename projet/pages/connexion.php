@@ -1,12 +1,21 @@
-<?php include("./header.php"); ?>
+<?php include("./header.php");
+
+if (!empty($_SESSION['login'])) {
+    header('Location: ../pages/index.php');
+}
+?>
 <div id="corp">
     <section id="centre">
-        <form method="post" action="../php/connexionManager.php" enctype="multipart/form-data"> 
-            <label for="login">login :</label><br />
-            <input type="text" name="login" value="admin" id="login" /><br />
-            <label for="password">password :</label><br />
-            <input type="password" name="password" value="admin" id="password" /><br />
-            <input type="submit" name="submit" value="Connexion" />
+        <form class="form-inline" method="post" action="../php/connexionManager.php" enctype="multipart/form-data">
+            <div class="form-group">
+                <label class="sr-only" for="login">Identifiant</label>
+                <input type="text" class="form-control" id="login" name="login"  >
+            </div>
+            <div class="form-group">
+                <label class="sr-only" for="password">Code confidentiel</label>
+                <input type="password" name="password" class="form-control" id="password" >
+            </div>
+            <button type="submit" class="btn btn-default">Connexion</button>
         </form>
     </section>
 </div>

@@ -3,6 +3,7 @@
 
 //require  './DataAccessObject.class.php';
 include_once '../php/DataAccessObject.class.php';
+include_once '../php/Rapport.class.php';
 
 /**
  * Create queries and execute them using the DAO
@@ -65,16 +66,41 @@ class QueryManager {
     }
     
       public static function search($titre) {
-        $requete = "SELECT  * from ged_rapport";
-
+        
+        $requete = "SELECT * FROM `ged_rapport` WHERE `nom_origin`=\"".$titre."\"";
         //echo '<script type="text/javascript"> alert("'. $requete.'"); </script> ';
         try {
             $DAO = DataAccessObject::getInstance();
-            $DAO->query($requete);
-            return $DAO->getLastInsertedID();
+            $result=$DAO->query($requete);
+            $res= $DAO->fetch($result);
+            echo $res[0];
+            echo $res[1];
+            
+            echo $res[2];
+            $rapport=new Rapport();
+            
+            return $rapport;
         } catch (Exception $e1) {
             throw new ErrorException("Erreur avec la base de données.", null, null, null, null, $e1);
         }
 
-}
+       }
+       
+       
+       public static function connection($login,$password) {
+       
+            $requete = "SELECT `login` FROM `ged_compte` WHERE `login`=\"".$login."\" AND `password`=\"".$password."\"";
+       
+            //echo '<script type="text/javascript"> alert("'. $requete.'"); </script> ';
+            try {
+                $DAO = DataAccessObject::getInstance();
+                $result=$DAO->query($requete);
+                $login= $DAO->fetch($result);
+                return $login[0];
+               
+            } catch (Exception $e1) {
+                throw new ErrorException("Erreur avec la base de données.", null, null, null, null, $e1);
+            }
+
+        }
 }

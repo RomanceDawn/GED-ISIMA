@@ -22,7 +22,7 @@ Dropzone.options.myAwesomeDropzone = {
 //        });
         this.on("success", function (file, response) {
             file.serverId = response;
-            alert(response);
+            //alert(response);
         });
         this.on("removedfile", function (file) {
             alert(file.serverId);
@@ -43,7 +43,7 @@ Dropzone.options.myAwesomeDropzone = {
 
 
 
-            XhrObj.open("POST", "../php/delete.php");
+            XhrObj.open("POST", "../php/deleteManager.php");
             XhrObj.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             XhrObj.send("id=" + file.serverId );
 
@@ -53,7 +53,7 @@ Dropzone.options.myAwesomeDropzone = {
     paramName: "file", // The name that will be used to transfer the file
     maxFilesize: 64, // MB
     createImageThumbnails: false,
-    acceptedFiles: ".pdf,.doc,.docx,.odt,.ODT,.DOC,.DOCX",
+    acceptedFiles: ".pdf",//.doc,.docx,.odt,.ODT,.DOC,.DOCX",
     accept: function (file, done) {
 //                    if (file.name == "justinbieber.jpg") {
 //                        done("Naha, you don't.");
