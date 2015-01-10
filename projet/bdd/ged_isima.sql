@@ -39,11 +39,16 @@ CREATE TABLE IF NOT EXISTS `ged_compte` (
 
 CREATE TABLE IF NOT EXISTS `ged_rapport` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
-  `date` date DEFAULT NULL,
-  `mots_clefs` varchar(200) DEFAULT NULL,
+  `date_creation` date DEFAULT NULL,
+  `date_modification` date DEFAULT NULL,
   `nom_origin` varchar(200) DEFAULT NULL,
   `nom_server` varchar(200) DEFAULT NULL,
   `auteur` varchar(200) DEFAULT NULL,
+  `titre` varchar(200) DEFAULT NULL,
+  `sujet` varchar(200) DEFAULT NULL,
+  `mots_clefs` varchar(200) DEFAULT NULL,
+  `description` varchar(200) DEFAULT NULL,
+  `ajouteur` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 

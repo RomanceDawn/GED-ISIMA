@@ -1,4 +1,5 @@
-<?php include("./header.php");
+<?php
+include("./header.php");
 
 if (!empty($_SESSION['login'])) {
     header('Location: ../pages/index.php');

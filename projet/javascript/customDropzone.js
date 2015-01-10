@@ -22,10 +22,10 @@ Dropzone.options.myAwesomeDropzone = {
 //        });
         this.on("success", function (file, response) {
             file.serverId = response;
-            //alert(response);
+            alert(response);
         });
         this.on("removedfile", function (file) {
-            alert(file.serverId);
+            //alert(file.serverId);
 
 //            $.ajax({
 //                url: "../php/delete.php",

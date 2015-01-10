@@ -1,0 +1,15 @@
+/.idea/*
+/coverage/*
+/samples/*
+/vendor/*
+/test*
+/xdebug/*
+/composer.phar
+/composer
+debug*
+composer.lock
+!/vendor/atoum/
+!/vendor/bin/
+!/vendor/composer/
+!/vendor/tecnick.com/
+!/vendor/autoload.php

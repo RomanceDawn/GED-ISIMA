@@ -1,4 +1,8 @@
 <?php
+session_start();
+if (empty($_SESSION['login'])) {
+    exit(0);
+}
 
 //$allowed_types_files = array(
 //    "application/pdf",
@@ -19,37 +23,60 @@ if (!empty($_FILES)) {
     $name_origin = $_FILES['file']['name'];
     $extension = substr(strrchr($name_origin, '.'), 1);
     if (!in_array(strtolower($extension), $allowed_files_extensions)) {
-   
+
         header('HTTP/1.1 500 Internal Server Error');
         header('Content-type: text/plain');
         exit("Type de fichier non valide.");
     }
     include './Rapport.class.php';
     include './QueryManager.class.php';
-    $date = NULL;
+    $date_creation = NULL;
+    $date_modification = NULL;
+    $sujet = NULL;
+    $description = NULL;
     $auteur = NULL;
+    $titre = NULL;
     $mots_cles = NULL;
-    //$random_id_length = 15;
-    $tempFile = $_FILES['file']['tmp_name'];          //3     
+
+    $ajouteur = $_SESSION['login'];
+    $tempFile = $_FILES['file']['tmp_name'];
     $name_origin = $_FILES['file']['name'];
     $extension = substr(strrchr($name_origin, '.'), 1);
 
-//generate a random id encrypt it and store it in $rnd_id 
+//generate a random id encrypt it and store it in $rnd_id
+    $random_id_length = 20;
     $rnd_id = crypt(uniqid(rand(), 1));
     $rnd_id = strip_tags(stripslashes($rnd_id));
     $rnd_id = str_replace(".", "", $rnd_id);
     $rnd_id = strrev(str_replace("/", "", $rnd_id));
-    //$rnd_id = substr($rnd_id, 0, $random_id_length);
+    $rnd_id = substr($rnd_id, 0, $random_id_length);
     $name_server = $rnd_id;
 
-    $targetPath = "../rapports/";  //4
-    $targetFile = $targetPath . $name_server;  //5
+    $targetPath = "../rapports/";
+    $targetFile = $targetPath . $name_server;
 
-    $temp = new Rapport($date, $name_origin, $mots_cles, $name_server, $auteur);
-    $id = QueryManager::insert($temp);
-    move_uploaded_file($tempFile, $targetFile); //6 
-    echo $id;
-    //echo "1"; //responsetext
+    move_uploaded_file($tempFile, $targetFile);
+
+    try {
+        require '../parser/vendor/autoload.php';
+        $parser = new \Smalot\PdfParser\Parser();
+        $pdf = $parser->parseFile($targetFile);
+        $details = $pdf->getDetails();
+        foreach ($details as $property => $value) {
+            if (is_array($value)) {
+                $value = implode(', ', $value);
+            }
+            echo $property . ' => ' . utf8_encode($value) . "\n<br>";
+        }
+        $temp = new Rapport($date_creation, $name_origin, $mots_cles, $name_server, $auteur);
+        $id = QueryManager::insert($temp);
+        echo $id;
+    } catch (Exception $e) {
+        header('HTTP/1.1 500 Internal Server Error');
+        header('Content-type: text/plain');
+        unlink($targetFile);
+        exit('FICHIER PDF INVALIDE : ' . $e->getMessage());
+    }
 } else {
     header('HTTP/1.1 500 Internal Server Error');
     header('Content-type: text/plain');

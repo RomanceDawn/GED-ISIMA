@@ -14,12 +14,12 @@ class DataAccessObject {
     /** The current instance of the class */
     private static $instance = null;
     private $link;
-    
+
     function getLink() {
         return $this->link;
     }
 
-        /**
+    /**
      * Construct the object and connect it to the database
      * @throws ErrorException if an error occured with the databse
      */
