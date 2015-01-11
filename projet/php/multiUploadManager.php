@@ -36,11 +36,11 @@ if (!empty($_FILES)) {
     $description = NULL;
     $auteur = NULL;
     $titre = NULL;
-    $mots_cles = NULL;
+    $mots_clefs = NULL;
 
     $ajouteur = $_SESSION['login'];
     $tempFile = $_FILES['file']['tmp_name'];
-    $name_origin = $_FILES['file']['name'];
+    $nom_origin = $_FILES['file']['name'];
     $extension = substr(strrchr($name_origin, '.'), 1);
 
 //generate a random id encrypt it and store it in $rnd_id
@@ -50,10 +50,10 @@ if (!empty($_FILES)) {
     $rnd_id = str_replace(".", "", $rnd_id);
     $rnd_id = strrev(str_replace("/", "", $rnd_id));
     $rnd_id = substr($rnd_id, 0, $random_id_length);
-    $name_server = $rnd_id;
+    $nom_server = $rnd_id;
 
     $targetPath = "../rapports/";
-    $targetFile = $targetPath . $name_server;
+    $targetFile = $targetPath . $nom_server;
 
     move_uploaded_file($tempFile, $targetFile);
 
@@ -66,9 +66,9 @@ if (!empty($_FILES)) {
             if (is_array($value)) {
                 $value = implode(', ', $value);
             }
-            echo $property . ' => ' . utf8_encode($value) . "\n<br>";
+            //echo $property . ' => ' . utf8_encode($value) . "\n<br>";
         }
-        $temp = new Rapport($date_creation, $name_origin, $mots_cles, $name_server, $auteur);
+        $temp = new Rapport($description , $titre , $sujet , $date_creation , $date_modification , $nom_origin , $mots_clefs , $nom_server , $auteur , $ajouteur);
         $id = QueryManager::insert($temp);
         echo $id;
     } catch (Exception $e) {

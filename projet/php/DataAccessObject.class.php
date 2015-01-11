@@ -53,7 +53,7 @@ class DataAccessObject {
         $result = $this->link->query($query);
         if ($result === false) {
             throw new ErrorException(mysqli_error($this->link), mysqli_errno($this->link));
-        }
+        } 
         return $result;
     }
 

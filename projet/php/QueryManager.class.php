@@ -41,7 +41,6 @@ class QueryManager {
     }
 
     public static function delete($id) {
-
         $requete = "DELETE FROM `ged_rapport` WHERE `id` = " . $id;
         try {
             $DAO = DataAccessObject::getInstance();
@@ -54,7 +53,7 @@ class QueryManager {
 
     public static function getServer_Name($id) {
 
-        $requete = "SELECT `nom_server`FROM `ged_rapport` WHERE `id` = " . $id;
+        $requete = "SELECT `nom_server` FROM `ged_rapport` WHERE `id` = " . $id;
         try {
             $DAO = DataAccessObject::getInstance();
             $result = $DAO->query($requete);

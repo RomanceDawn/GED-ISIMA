@@ -14,6 +14,12 @@ session_start();
         <link rel="stylesheet" type="text/css" href="../css/etat.css">
         <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="../css/bootstrap-theme.min.css">
+        <script>
+            var Dropzone = require("enyo-dropzone");
+            Dropzone.autoDiscover = false;
+        </script>
+
+
     </head>
     <body>
         <nav>
