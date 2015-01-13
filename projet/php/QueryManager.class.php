@@ -66,19 +66,25 @@ class QueryManager {
 
     public static function search($titre) {
 
-        $requete = "SELECT * FROM `ged_rapport` WHERE `nom_origin`=\"" . $titre . "\"";
+        $requete = "SELECT * FROM `ged_rapport` WHERE `nom_origin`LIKE \"%" . $titre . "%\"";
+       
         //echo '<script type="text/javascript"> alert("'. $requete.'"); </script> ';
         try {
             $DAO = DataAccessObject::getInstance();
             $result = $DAO->query($requete);
-            $res = $DAO->fetch($result);
-            echo $res[0];
-            echo $res[1];
+            $i=0;
+            require_once('Rapport.class.php');
+            while($res = $DAO->fetch($result))
+            {
+                $rapport = new Rapport($res['description'] , $res['titre'] , $res['sujet'] , $res['date_creation'] , $res['date_modification'] , 
+                        $res['nom_origin'] , $res['mots_clefs'] , $res['nom_server'] , $res['auteur'] , $res['ajouteur']);
+              $str_rapport=serialize($rapport);
+                $rapports[$i]=$str_rapport;
+                $i++;
+       
+            }
 
-            echo $res[2];
-            $rapport = new Rapport();
-
-            return $rapport;
+            return $rapports;
         } catch (Exception $e1) {
             throw new ErrorException("Erreur avec la base de données.", null, null, null, null, $e1);
         }

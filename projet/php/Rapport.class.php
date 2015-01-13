@@ -16,6 +16,15 @@ class Rapport {
 
     protected $attributs = array();
 
+    
+    public function getNom_Origin()
+    {
+       return  $this->attributs[self::NOM_ORIG];
+    }
+    
+    
+    
+    
     public function getAttributes() {
         return $this->attributs;
     }
