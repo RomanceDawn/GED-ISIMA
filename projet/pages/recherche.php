@@ -5,7 +5,7 @@
 
 
             <label for="titre">Titre du fichier (max. 50 caractères) :</label><br />
-            <input type="text" name="titre" value="Titre du fichier" id="titre" /><br />
+            <input type="text" name="titre" value="" id="titre" /><br />
 
             <input type="submit" name="submit" value="Rechercher" />
         </form>

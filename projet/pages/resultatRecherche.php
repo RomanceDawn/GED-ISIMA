@@ -11,7 +11,8 @@
            {
                $rapports[$i]=unserialize($rapports[$i]);
                echo "<tr>";
-               echo "<td>".$rapports[$i]->getNom_Origin()."</td>";
+               echo "<td>".$rapports[$i]->getNomOrigin()."</td>";
+               echo "<td><a href=../rapports/".$rapports[$i]->getNomServ().">télécharger</a></td>";
                echo "</tr>";
            }
            echo "</table>";
