@@ -58,16 +58,6 @@ if (!empty($_FILES)) {
     move_uploaded_file($tempFile, $targetFile);
 
     try {
-        require '../parser/vendor/autoload.php';
-        $parser = new \Smalot\PdfParser\Parser();
-        $pdf = $parser->parseFile($targetFile);
-        $details = $pdf->getDetails();
-        foreach ($details as $property => $value) {
-            if (is_array($value)) {
-                $value = implode(', ', $value);
-            }
-            //echo $property . ' => ' . utf8_encode($value) . "\n<br>";
-        }
         $temp = new Rapport($description , $titre , $sujet , $date_creation , $date_modification , $nom_origin , $mots_clefs , $nom_server , $auteur , $ajouteur);
         $id = QueryManager::insert($temp);
         echo $id;
