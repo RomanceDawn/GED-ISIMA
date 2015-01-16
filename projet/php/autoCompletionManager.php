@@ -21,18 +21,18 @@ if (!empty($_FILES)) {
     }
     include './Rapport.class.php';
     include './QueryManager.class.php';
-    $date_creation = NULL;
-    $date_modification = NULL;
+//    $date_creation = NULL;
+//    $date_modification = NULL;
     $sujet = NULL;
-    $description = NULL;
+//    $description = NULL;
     $auteur = NULL;
     $titre = NULL;
     $mots_clefs = NULL;
 
-    $ajouteur = $_SESSION['login'];
+//    $ajouteur = $_SESSION['login'];
     $tempFile = $_FILES['file']['tmp_name'];
     $nom_origin = $_FILES['file']['name'];
-    $extension = substr(strrchr($name_origin, '.'), 1);
+//    $extension = substr(strrchr($name_origin, '.'), 1);
 
 //generate a random id encrypt it and store it in $rnd_id
     $random_id_length = 20;
@@ -43,7 +43,7 @@ if (!empty($_FILES)) {
     $rnd_id = substr($rnd_id, 0, $random_id_length);
     $nom_server = $rnd_id;
 
-    $targetPath = "../rapports/";
+    $targetPath = "../tmp/";
     $targetFile = $targetPath . $nom_server;
 
     move_uploaded_file($tempFile, $targetFile);
@@ -71,24 +71,26 @@ if (!empty($_FILES)) {
                 case 'subject':
                     $sujet = $value;
                     break;
-                case 'creation_date':
-                    $timestamp = strtotime(substr($value, 2, 8));
-                    $date_creation = date('Y-m-d', $timestamp);
-                    break;
-                case 'mod_date':
-                    $timestamp = strtotime(substr($value, 2, 8));
-                    $date_modification = date('Y-m-d', $timestamp);
-                    break;
+//                case 'creation_date':
+//                    $timestamp = strtotime(substr($value, 2, 8));
+//                    $date_creation = date('Y-m-d', $timestamp);
+//                    break;
+//                case 'mod_date':
+//                    $timestamp = strtotime(substr($value, 2, 8));
+//                    $date_modification = date('Y-m-d', $timestamp);
+//                    break;
             }
         }
-
+        $data = array(
+            "titre" => $titre,
+            "auteur" => $auteur,
+            "mots_clefs" => $mots_clefs,
+            "sujet" =>$sujet
+        );
         fclose($handle);
-        include '../parser/parser-texte/Parser.class.php';
-        $texte=PdfParser::parseFile($targetFile);
+        unlink($targetFile);
+        echo json_encode($data, JSON_PRETTY_PRINT);
 
-        $temp = new Rapport($description, $titre, $sujet, $date_creation, $date_modification, $nom_origin, $mots_clefs, $nom_server, $auteur, $ajouteur, $texte);
-        $id = QueryManager::insert($temp);
-        echo $id;
     } catch (Exception $e) {
         header('HTTP/1.1 500 Internal Server Error');
         header('Content-type: text/plain');

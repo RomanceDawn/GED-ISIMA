@@ -56,6 +56,7 @@ CREATE TABLE IF NOT EXISTS `ged_rapport` (
   `mots_clefs` varchar(200) DEFAULT NULL,
   `description` varchar(200) DEFAULT NULL,
   `ajouteur` varchar(200) DEFAULT NULL,
+  `texte` varchar(10000) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 

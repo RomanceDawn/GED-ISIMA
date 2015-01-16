@@ -13,6 +13,7 @@ class Rapport {
     const SUJET = 'sujet';
     const TITRE = 'titre';
     const AJOUTEUR = 'ajouteur';
+    const TEXTE = 'texte';
 
     protected $attributs = array();
 
@@ -32,7 +33,7 @@ class Rapport {
         return $this->attributs;
     }
 
-    public function __construct($description = NULL, $titre = NULL, $sujet = NULL, $date_creation = NULL, $date_modification = NULL, $nom_origin = NULL, $mots_clefs = NULL, $nom_server = NULL, $auteur = NULL, $ajouteur = NULL) {
+    public function __construct($description = NULL, $titre = NULL, $sujet = NULL, $date_creation = NULL, $date_modification = NULL, $nom_origin = NULL, $mots_clefs = NULL, $nom_server = NULL, $auteur = NULL, $ajouteur = NULL ,$texte=NULL) {
 
         //$this->attributs[self::ID] = $id;
         $this->attributs[self::DATE_CREATION] = $date_creation;
@@ -45,6 +46,7 @@ class Rapport {
         $this->attributs[self::MOTS_CLE] = $mots_clefs;
         $this->attributs[self::DESCRIPTION] = $description;
         $this->attributs[self::AJOUTEUR] = $ajouteur;
+        $this->attributs[self::TEXTE] = $texte;
     }
 
 //    public static function delete(int $id) {
