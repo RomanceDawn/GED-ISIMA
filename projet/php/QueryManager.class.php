@@ -64,10 +64,11 @@ class QueryManager {
         }
     }
 
-    public static function search($titre) {
+    public static function search($terme) {
 
-        $requete = "SELECT * FROM `ged_rapport` WHERE `nom_origin`LIKE \"%" . $titre . "%\"";
-       
+       // $requete = "SELECT * FROM `ged_rapport` WHERE `nom_origin`LIKE \"%" . $titre . "%\"";
+       $requete = "SELECT * FROM ged_rapport WHERE MATCH(`nom_origin`, `auteur`, `titre`,`texte`) AGAINST ('".$terme."')";
+       echo $requete;
         //echo '<script type="text/javascript"> alert("'. $requete.'"); </script> ';
         try {
             $DAO = DataAccessObject::getInstance();

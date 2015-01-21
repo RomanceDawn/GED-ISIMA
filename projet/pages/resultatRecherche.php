@@ -1,4 +1,4 @@
-<?php include("./header.php"); ?>
+<?php include("./headerRecherche.php"); ?>
 <div id="corp">
     <section id="centre">
        <?php 
