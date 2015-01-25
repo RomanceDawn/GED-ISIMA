@@ -51,6 +51,13 @@ class DataAccessObject {
      */
     public function query($query) {
         $result = $this->link->query($query);
+//$fp = fopen ("requetes.txt", "r+");
+//
+//fseek ($fp, 0);
+//
+//fputs ($fp, $query);
+//
+//fclose ($fp);
         if ($result === false) {
             throw new ErrorException(mysqli_error($this->link), mysqli_errno($this->link));
         } 

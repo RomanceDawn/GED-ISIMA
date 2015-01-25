@@ -85,8 +85,8 @@ if (!empty($_FILES) && !empty($_POST)) {
 
         fclose($handle);
         include '../parser/parser-texte/Parser.class.php';
-        $texte=PdfParser::parseFile($targetFile);
-
+        $texte = PdfParser::parseFile($targetFile);
+        $texte = iconv('UTF-8', 'UTF-8//IGNORE', $texte);
         $temp = new Rapport($description, $titre, $sujet, $date_creation, $date_modification, $nom_origin, $mots_clefs, $nom_server, $auteur, $ajouteur, $texte);
         $id = QueryManager::insert($temp);
         //echo $id;
