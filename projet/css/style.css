@@ -128,3 +128,13 @@ div.table .file-row:nth-child(odd) {
 #previews .file-row.dz-success .delete {
     display: block;
 }
+
+
+div.dropName{
+    max-width: 416px;
+    overflow: auto;
+}
+
+div.dropBar{
+    width: 150px;
+}

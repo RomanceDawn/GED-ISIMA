@@ -42,14 +42,14 @@ if (empty($_SESSION['login'])) {
 
             <div id="template" class="file-row">
                 <!-- This is used as the file preview template -->
-                <div>
+<!--                <div>
                     <span class="preview"><img data-dz-thumbnail /></span>
-                </div>
-                <div>
+                </div>-->
+                <div class="dropName">
                     <p class="name" data-dz-name></p>
                     <strong class="error text-danger" data-dz-errormessage></strong>
                 </div>
-                <div>
+                <div  class="dropBar">
                     <p class="size" data-dz-size></p>
                     <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
                         <div class="progress-bar progress-bar-success" style="width:0%;" data-dz-uploadprogress></div>
