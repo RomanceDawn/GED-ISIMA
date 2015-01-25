@@ -35,13 +35,14 @@ if (!empty($_FILES)) {
     $extension = substr(strrchr($name_origin, '.'), 1);
 
 //generate a random id encrypt it and store it in $rnd_id
-    $random_id_length = 20;
-    $rnd_id = crypt(uniqid(rand(), 1));
-    $rnd_id = strip_tags(stripslashes($rnd_id));
-    $rnd_id = str_replace(".", "", $rnd_id);
-    $rnd_id = strrev(str_replace("/", "", $rnd_id));
-    $rnd_id = substr($rnd_id, 0, $random_id_length);
-    $nom_server = $rnd_id;
+//    $random_id_length = 20;
+//    $rnd_id = crypt(uniqid(rand(), 1));
+//    $rnd_id = strip_tags(stripslashes($rnd_id));
+//    $rnd_id = str_replace(".", "", $rnd_id);
+//    $rnd_id = strrev(str_replace("/", "", $rnd_id));
+//    $rnd_id = substr($rnd_id, 0, $random_id_length);
+//    $nom_server = $rnd_id;
+    $nom_server = uniqid();
 
     $targetPath = "../rapports/";
     $targetFile = $targetPath . $nom_server;
