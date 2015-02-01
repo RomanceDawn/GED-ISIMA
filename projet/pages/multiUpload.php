@@ -5,6 +5,7 @@ include("./header.php");
 if (empty($_SESSION['login'])) {
     header('Location: ../pages/index.php');
 }
+
 ?>
 <div id="corp">
     <section id="centre"> 
@@ -82,11 +83,11 @@ if (empty($_SESSION['login'])) {
 
             var myDropzone = new Dropzone(document.body, {// Make the whole body a dropzone
                 url: "../php/multiUploadManager.php", // Set the url
-                parallelUploads: 200,
+                parallelUploads: 1,
                 previewTemplate: previewTemplate,
                 createImageThumbnails: false,
                 acceptedFiles: ".pdf",
-                maxFilesize: 64,
+                maxFilesize: 128,
                 paramName: "file",
                 autoQueue: false, // Make sure the files aren't queued until manually added
                 previewsContainer: "#previews", // Define the container to display the previews

@@ -9,7 +9,7 @@ if (empty($_SESSION['login'])) {
 $allowed_files_extensions = array(
     "pdf",
 );
-
+ini_set('memory_limit', '-1');
 if (!empty($_FILES) && !empty($_POST)) {
     $name_origin = $_FILES['file']['name'];
     $extension = substr(strrchr($name_origin, '.'), 1);
@@ -29,6 +29,7 @@ if (!empty($_FILES) && !empty($_POST)) {
     $auteur = $_POST['auteur'];
     $titre = $_POST['titre'];
     $mots_clefs = $_POST['motscles'];
+    $texte = null;
 
     $ajouteur = $_SESSION['login'];
     $tempFile = $_FILES['file']['tmp_name'];
@@ -48,11 +49,11 @@ if (!empty($_FILES) && !empty($_POST)) {
     $targetPath = "../rapports/";
     $targetFile = $targetPath . $nom_server;
 
-    move_uploaded_file($tempFile, $targetFile);
+
 
     try {
         include '../parser/parser-metadata/pdf.php';
-        $handle = fopen($targetFile, 'rb');
+        $handle = fopen($tempFile, 'rb');
         $pdf = new PdfFileReader($handle);
         foreach ($pdf->get_document_info()->data as $property => $value) {
 //            if (is_array($value)) {
@@ -86,19 +87,17 @@ if (!empty($_FILES) && !empty($_POST)) {
 
         fclose($handle);
         include '../parser/parser-texte/Parser.class.php';
-        $texte = PdfParser::parseFile($targetFile);
+        $texte = PdfParser::parseFile($tempFile);
         $texte = iconv('UTF-8', 'UTF-8//IGNORE', $texte);
-        $temp = new Rapport($description, $titre, $sujet, $date_creation, $date_modification, $nom_origin, $mots_clefs, $nom_server, $auteur, $ajouteur, $texte);
-        $id = QueryManager::insert($temp);
-        //echo $id;
-        header("Location: ../pages/simpleUpload.php?success=1");
     } catch (Exception $e) {
-        header('HTTP/1.1 500 Internal Server Error');
-        header('Content-type: text/plain');
-        unlink($targetFile);
-        header("Location: ../pages/simpleUpload.php?erreur=2");
-        exit('FICHIER PDF INVALIDE : ' . $e->getMessage());
+        
     }
+    $temp = new Rapport($description, $titre, $sujet, $date_creation, $date_modification, $nom_origin, $mots_clefs, $nom_server, $auteur, $ajouteur, $texte);
+
+    $id = QueryManager::insert($temp);
+    move_uploaded_file($tempFile, $targetFile);
+    //echo $id;
+    header("Location: ../pages/simpleUpload.php?success=1");
 } else {
     header('HTTP/1.1 500 Internal Server Error');
     header('Content-type: text/plain');

@@ -138,3 +138,7 @@ div.dropName{
 div.dropBar{
     width: 150px;
 }
+
+textArea.vertic{
+    resize:vertical;
+}

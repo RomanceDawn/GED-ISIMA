@@ -47,17 +47,17 @@ if (empty($_SESSION['login'])) {
                 <label for="auteur">Auteur</label>
                 <input type="text" name="auteur" class="form-control" id="auteur" placeholder="Auteur du document">
             </div>
-            <!--            <div class="form-group">
-                            <label for="date">Date</label>
-                            <input type="text" name="date" class="form-control" id="date" placeholder="AAAA-MM-JJ">
-                        </div>-->
+            <div class="form-group">
+                <label for="date">Année</label>
+                <input type="text" name="date" class="form-control" id="date" placeholder="Exemple : 2015">
+            </div>
             <div class="form-group">
                 <label for="sujet">Sujet</label>
                 <input type="text" name="sujet" class="form-control" id="sujet" placeholder="Sujet du document">
             </div>
             <div class="form-group">
                 <label for="motscles">Description</label>
-                <textarea name="description" id="description" class="form-control" rows="2" placeholder="Description du fichier..."></textarea>
+                <textarea name="description" id="description" class="form-control vertic"  rows="2" placeholder="Description du fichier..."></textarea>
             </div>
             <div class="form-group">
                 <label for="motscles">Mots clés</label>
@@ -108,17 +108,19 @@ if (empty($_SESSION['login'])) {
                 var obj = JSON.parse(xhr.responseText);
                 var titre = document.getElementById('titre');
                 var auteur = document.getElementById('auteur');
-//                var date = document.getElementById('date');
+                var date = document.getElementById('date');
                 var motscles = document.getElementById('motscles');
                 var sujet = document.getElementById('sujet');
                 titre.value = obj.titre;
                 auteur.value = obj.auteur;
-//                date.value=obj.date_creation;
+                date.value=obj.date_creation;
                 motscles.value = obj.mots_clefs;
                 sujet.value = obj.sujet;
 
             } else {
-                alert('Une erreur est survenue.');
+                alert('Une erreur est survenue.\n Auto-complétion impossible.');
+                uploadButton.setAttribute("disabled",true);
+                uploadButton.className += " btn-danger"
             }
 
             uploadButton.innerHTML = 'Auto-Complétion';

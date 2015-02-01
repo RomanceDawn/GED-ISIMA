@@ -34,23 +34,11 @@ if (!empty($_FILES)) {
     $nom_origin = $_FILES['file']['name'];
 //    $extension = substr(strrchr($name_origin, '.'), 1);
 
-//generate a random id encrypt it and store it in $rnd_id
-    $random_id_length = 20;
-    $rnd_id = crypt(uniqid(rand(), 1));
-    $rnd_id = strip_tags(stripslashes($rnd_id));
-    $rnd_id = str_replace(".", "", $rnd_id);
-    $rnd_id = strrev(str_replace("/", "", $rnd_id));
-    $rnd_id = substr($rnd_id, 0, $random_id_length);
-    $nom_server = $rnd_id;
 
-    $targetPath = "../tmp/";
-    $targetFile = $targetPath . $nom_server;
-
-    move_uploaded_file($tempFile, $targetFile);
 
     try {
         include '../parser/parser-metadata/pdf.php';
-        $handle = fopen($targetFile, 'rb');
+        $handle = fopen($tempFile, 'rb');
         $pdf = new PdfFileReader($handle);
         foreach ($pdf->get_document_info()->data as $property => $value) {
             if (is_array($value)) {
@@ -88,7 +76,7 @@ if (!empty($_FILES)) {
             "sujet" =>$sujet
         );
         fclose($handle);
-        unlink($targetFile);
+//        unlink($tempFile);
         echo json_encode($data, JSON_PRETTY_PRINT);
 
     } catch (Exception $e) {
