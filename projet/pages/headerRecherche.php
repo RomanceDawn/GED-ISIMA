@@ -22,7 +22,6 @@ session_start();
         <nav>
             <ul id="mainMenu">
                 <li><a href="recherche.php"><img src="../images/home.png" alt="Index" /></a></li>
-                <li><a href="recherche.php">Recherche Simple</a></li>
-                <li><a href="rechercheAvancee.php">Recherche Avancée</a></li>   
+                <li><a href="recherche.php">Recherche</a></li>
             </ul>
         </nav>

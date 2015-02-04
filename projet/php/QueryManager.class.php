@@ -64,10 +64,71 @@ class QueryManager {
         }
     }
 
-    public static function search($terme) {
+    public static function search($motsClefs,$annee,$auteur,$titre,$sujet,$description) {
 
+       $first=true;
        // $requete = "SELECT * FROM `ged_rapport` WHERE `nom_origin`LIKE \"%" . $titre . "%\"";
-       $requete = "SELECT * FROM ged_rapport WHERE MATCH(`nom_origin`, `auteur`, `titre`,`texte`) AGAINST ('".$terme."')";
+       $requete= "SELECT * FROM ged_rapport ";
+       if($motsClefs!="")
+       {
+           $requete=$requete."WHERE MATCH(`nom_origin`,`auteur`,`sujet`,`titre`,`description`,`texte`) AGAINST ('".$motsClefs."')";
+           $first=false;
+       }
+       if($auteur!="")
+       {
+           if($first)
+           {
+               $requete=$requete." WHERE MATCH(`auteur`) AGAINST ('".$auteur."')"; 
+               $first=false;
+           }
+           else
+           {
+               $requete=$requete." AND MATCH(`auteur`) AGAINST ('".$auteur."')"; 
+           
+           }
+       }
+       if($titre!="")
+       {
+           if($first)
+           {
+               $requete=$requete." WHERE MATCH(`titre`) AGAINST ('".$titre."')"; 
+               $first=false;
+           }
+           else
+           {
+               $requete=$requete." AND MATCH(`titre`) AGAINST ('".$titre."')"; 
+           
+           }
+       }
+       if($description!="")
+       {
+           if($first)
+           {
+               $requete=$requete." WHERE MATCH(`description`) AGAINST ('".$description."')"; 
+               $first=false;
+           }
+           else
+           {
+               $requete=$requete." AND MATCH(`description`) AGAINST ('".$description."')"; 
+           }
+       }
+       if($annee!="")
+       {
+           $anneeFin=$annee+1;
+           if($first)
+           {
+               $requete=$requete." WHERE `date_creation` > ".$annee; 
+               $first=false;
+           }
+           else
+           {
+               $requete=$requete." AND `date_creation` > ".$annee." AND `date_creation` <".$anneeFin;   
+           }
+       }
+       
+    //   $requete = "SELECT * FROM ged_rapport WHERE MATCH(`nom_origin`,`auteur`,`sujet`,`titre`,`description`,`texte`) AGAINST ('".$motsClefs.",".$annee."')";
+      
+       
        echo $requete;
         //echo '<script type="text/javascript"> alert("'. $requete.'"); </script> ';
         try {
@@ -75,16 +136,16 @@ class QueryManager {
             $result = $DAO->query($requete);
             $i=0;
             require_once('Rapport.class.php');
+            $rapports="";
             while($res = $DAO->fetch($result))
             {
                 $rapport = new Rapport($res['description'] , $res['titre'] , $res['sujet'] , $res['date_creation'] , $res['date_modification'] , 
                         $res['nom_origin'] , $res['mots_clefs'] , $res['nom_server'] , $res['auteur'] , $res['ajouteur']);
-              $str_rapport=serialize($rapport);
+                $str_rapport=serialize($rapport);
                 $rapports[$i]=$str_rapport;
                 $i++;
        
             }
-
             return $rapports;
         } catch (Exception $e1) {
             throw new ErrorException("Erreur avec la base de données.", null, null, null, null, $e1);
