@@ -71,7 +71,7 @@ class QueryManager {
        $requete= "SELECT * FROM ged_rapport ";
        if($motsClefs!="")
        {
-           $requete=$requete."WHERE MATCH(`nom_origin`,`auteur`,`sujet`,`titre`,`description`,`texte`) AGAINST ('".$motsClefs."')";
+           $requete=$requete."WHERE MATCH(`nom_origin`,`mots_clefs`,`auteur`,`sujet`,`titre`,`description`,`texte`) AGAINST ('".$motsClefs."')";
            $first=false;
        }
        if($auteur!="")
@@ -117,12 +117,12 @@ class QueryManager {
            $anneeFin=$annee+1;
            if($first)
            {
-               $requete=$requete." WHERE `date_creation` > ".$annee; 
+               $requete=$requete." WHERE DATE(`date_creation`) > '".$annee."' AND Date(`date_creation`) <'".$anneeFin."'";
                $first=false;
            }
            else
            {
-               $requete=$requete." AND `date_creation` > ".$annee." AND `date_creation` <".$anneeFin;   
+               $requete=$requete." AND DATE(`date_creation`) > '".$annee."' AND Date(`date_creation`) <'".$anneeFin."'";
            }
        }
        
@@ -140,7 +140,7 @@ class QueryManager {
             while($res = $DAO->fetch($result))
             {
                 $rapport = new Rapport($res['description'] , $res['titre'] , $res['sujet'] , $res['date_creation'] , $res['date_modification'] , 
-                        $res['nom_origin'] , $res['mots_clefs'] , $res['nom_server'] , $res['auteur'] , $res['ajouteur']);
+                $res['nom_origin'] , $res['mots_clefs'] , $res['nom_server'] , $res['auteur'] , $res['ajouteur']);
                 $str_rapport=serialize($rapport);
                 $rapports[$i]=$str_rapport;
                 $i++;

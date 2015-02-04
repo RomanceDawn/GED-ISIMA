@@ -1,6 +1,6 @@
 <?php
-session_start();
-require_once('Rapport.class.php');
+    session_start();
+    require_once('Rapport.class.php');
 
     include './QueryManager.class.php';
     $motsClefs = $_POST['motsClefs'];
@@ -10,12 +10,20 @@ require_once('Rapport.class.php');
     $sujet=$_POST['sujet'];
     $description=$_POST['description'];
     $rapports=QueryManager::search($motsClefs,$annee,$auteur,$titre,$sujet,$description);
-  /*  $str=$rapports[0];
-    $rapport=unserialize($str);
-    echo $rapport->getNom_Origin();*/
-   
-    $_SESSION['rapports']=$rapports;
-    header('Location: ../pages/resultatRecherche.php');
+    if(count($rapports)>1)
+    {
+        $_SESSION['rapports']=$rapports;
+        header('Location: ../pages/resultatRecherche.php');
+    }
+    else
+    {
+
+        header('HTTP/1.1 500 Internal Server Error');
+        header('Content-type: text/plain');
+        header("Location: ../pages/recherche.php?erreur=1");
+         
+    }
    
 
 
+?>

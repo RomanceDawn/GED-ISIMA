@@ -73,9 +73,20 @@
                     
                 </tr>
                 <tr><td><input type="submit" name="submit" value="Rechercher"></td></tr>
-            </table>
+  <?php         if (isset($_GET['erreur'])) {
+                switch ($_GET['erreur']) {
+                    case 1:
+                        echo '<tr><td>Aucun résultat</td></tr>';
+                        break;
+                   
+                }
+            }
+?>
                  
+             </table>
         </form>
+
+        
     </section>
 </div>
 <?php include("./footer.php"); ?>

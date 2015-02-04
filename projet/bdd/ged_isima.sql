@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `ged_rapport` (
   `ajouteur` varchar(200) DEFAULT NULL,
   `texte` varchar(10000) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  FULLTEXT KEY `motsClefs` (`nom_origin`,`auteur`,`sujet`,`titre`,`description`,`texte`),
+  FULLTEXT KEY `motsClefs` (`nom_origin`,`mots_clefs`,`auteur`,`sujet`,`titre`,`description`,`texte`),
   FULLTEXT KEY `auteur` (`auteur`),
   FULLTEXT KEY `titre` (`titre`),
   FULLTEXT KEY `sujet` (`sujet`),
