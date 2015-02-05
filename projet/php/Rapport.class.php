@@ -69,7 +69,7 @@ class Rapport {
         $this->attributs[self::AUTEUR] = $auteur;
         $this->attributs[self::TITRE] = $titre;
         $this->attributs[self::SUJET] = $sujet;
-        $this->attributs[self::MOTS_CLE] = $mots_clefs;
+        $this->attributs[self::MOTS_CLES] = $mots_clefs;
         $this->attributs[self::DESCRIPTION] = $description;
         $this->attributs[self::AJOUTEUR] = $ajouteur;
         $this->attributs[self::TEXTE] = $texte;
