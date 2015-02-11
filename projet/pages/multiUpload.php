@@ -96,7 +96,7 @@ if (empty($_SESSION['login'])) {
 
             myDropzone.on("success", function (file, response) {
                 file.serverId = response;
-                //alert(response);
+//                alert(response);
             });
 
             myDropzone.on("removedfile", function (file) {

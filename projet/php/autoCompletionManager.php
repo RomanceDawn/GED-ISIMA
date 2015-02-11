@@ -9,7 +9,7 @@ if (empty($_SESSION['login'])) {
 $allowed_files_extensions = array(
     "pdf",
 );
-
+ini_set('memory_limit', '-1');
 if (!empty($_FILES)) {
     $name_origin = $_FILES['file']['name'];
     $extension = substr(strrchr($name_origin, '.'), 1);
