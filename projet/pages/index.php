@@ -1,12 +1,9 @@
 <?php include("header.php"); ?>
 
 
-<div id="corp">
-    <section id="centre">
-        <?php
-
-        
-        ?>
-    </section>
+  
+<div class="container theme-showcase" role="main">
+  
 </div>
 <?php include("footer.php"); ?>
+

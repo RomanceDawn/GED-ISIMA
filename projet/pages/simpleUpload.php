@@ -6,8 +6,7 @@ if (empty($_SESSION['login'])) {
 }
 ?>
 
-<div id="corp">
-    <section id="centre">
+ <div class="container theme-showcase" role="main">
         <form method="post" action="../php/simpleUploadManager.php" enctype="multipart/form-data" id="file-form">
             <?php
             if (isset($_GET['erreur'])) {
@@ -66,7 +65,6 @@ if (empty($_SESSION['login'])) {
             <button type="submit" class="btn btn-default">Envoyer</button>
         </form>
 
-    </section>
 </div>
 
 <script type="text/javascript">

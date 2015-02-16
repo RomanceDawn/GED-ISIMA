@@ -59,9 +59,16 @@ class Rapport {
     {
         return $this->attributs[self::MOTS_CLES];
     }
-    public function __construct($description = NULL, $titre = NULL, $sujet = NULL, $date_creation = NULL, $date_modification = NULL, $nom_origin = NULL, $mots_clefs = NULL, $nom_server = NULL, $auteur = NULL, $ajouteur = NULL ,$texte=NULL) {
+    
+    public function getID()
+    {
+        return $this->attributs[self::ID];
+    }
+    
+    
+    public function __construct($description = NULL, $titre = NULL, $sujet = NULL, $date_creation = NULL, $date_modification = NULL, $nom_origin = NULL, $mots_clefs = NULL, $nom_server = NULL, $auteur = NULL, $ajouteur = NULL ,$texte=NULL,$id=NULL) {
 
-        //$this->attributs[self::ID] = $id;
+        $this->attributs[self::ID] = $id;
         $this->attributs[self::DATE_CREATION] = $date_creation;
         $this->attributs[self::DATE_MODIFICATION] = $date_modification;
         $this->attributs[self::NOM_ORIG] = $nom_origin;

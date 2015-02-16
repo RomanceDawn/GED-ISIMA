@@ -7,8 +7,7 @@ if (empty($_SESSION['login'])) {
 }
 
 ?>
-<div id="corp">
-    <section id="centre"> 
+ <div class="container theme-showcase" role="main">
 
         <div id="actions" class="row">
 
@@ -160,7 +159,6 @@ if (empty($_SESSION['login'])) {
         </script>
 
 
-    </section>
 </div>
 
 <?php
