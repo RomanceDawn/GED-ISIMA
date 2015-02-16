@@ -139,8 +139,10 @@ class QueryManager {
             $rapports="";
             while($res = $DAO->fetch($result))
             {
+                echo "res : ".$res['id'];
                 $rapport = new Rapport($res['description'] , $res['titre'] , $res['sujet'] , $res['date_creation'] , $res['date_modification'] , 
-                $res['nom_origin'] , $res['mots_clefs'] , $res['nom_server'] , $res['auteur'] , $res['ajouteur']);
+                $res['nom_origin'] , $res['mots_clefs'] , $res['nom_server'] , $res['auteur'] , $res['ajouteur'],"",$res['id']);
+                echo $rapport->getID()." <br />";
                 $str_rapport=serialize($rapport);
                 $rapports[$i]=$str_rapport;
                 $i++;

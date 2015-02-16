@@ -1,16 +1,24 @@
 <?php include("./header.php"); ?>
  <div class="container theme-showcase" role="main">
+     <div class="page-header">
+         <h1>Résultat Recherche</h1>
+         
+     </div>
        <?php 
        if(!empty($_SESSION['rapports']))
        {
            require_once '../php/Rapport.class.php';
            $rapports=$_SESSION['rapports'];
-           echo "<table id=\"resultat\">";
+           echo "<div class=\"col-md-6\">";
+           echo "<table class=\"table table-striped\">";
+           echo"<tbody>";
            for($i=0;$i<count($rapports);$i++)
            {
                $rapports[$i]=unserialize($rapports[$i]);
-               echo "<tr>";
+               
+               echo "<tr id=\"".$rapports[$i]->getID()."\">";
                $nomAffichage="Rapport de ".$rapports[$i]->getAuteur();
+      
                echo "<td>".$nomAffichage."</td>";
                echo "<td><a href=../rapports/".$rapports[$i]->getNomServ()." TARGET=\"_blank\">télécharger</a></td>";
                if (!empty($_SESSION['login'])) {
@@ -18,15 +26,14 @@
                    $str_rapport=serialize($rapports[$i]);
                    $_SESSION['rapport']=$str_rapport;
                     echo "<td><a href=modifierRapport.php>Modifier</a></td>";
-                    echo "<form action= \"../php/suppressionManager.php\" method=\"post\" name=\"formu\" id=\"formu\">
-                    <input name=\"id\" type = \"hidden\" id = \"id\" value = ".$id.">
-                   <td><button id=\"buttonDelete\">Supprimer</button></td>
-                    </form>";
+                   echo "<td><a href='#' onClick=supprimerRapport('".$rapports[$i]->getID()."');return false;\">Supprimer</a></td>";
                     //echo "<td><a href=../php/suppressionManager.php>Supprimer</a></td>";
                }
                echo "</tr>";
            }
+           echo "</tbody>";
            echo "</table>";
+           echo "</div>";
        }
        
        

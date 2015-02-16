@@ -13,6 +13,7 @@
     if(count($rapports)>1)
     {
         $_SESSION['rapports']=$rapports;
+
         header('Location: ../pages/resultatRecherche.php');
     }
     else

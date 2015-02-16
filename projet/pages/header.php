@@ -16,9 +16,6 @@ session_start();
 
         <link rel="stylesheet" type="text/css" href="../css/dropzone.css">
         <link rel="stylesheet" type="text/css" href="../css/theme.css">
-        <link rel="stylesheet" type="text/css" href="../css/base.css">
-        <link rel="stylesheet" type="text/css" href="../css/normalize.css">
-        <link rel="stylesheet" type="text/css" href="../css/etat.css">
         <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="../css/bootstrap-theme.min.css">
         <script>
@@ -28,6 +25,7 @@ session_start();
           <script src="../javascript/jquery-2.1.3.js"></script>
         <script src="../javascript/bootstrap.min.js"></script>
         <script src="../javascript/dropzone.js"></script>
+        <script src="../javascript/script.js"></script>
     <!-- Custom styles for this template -->
 
 

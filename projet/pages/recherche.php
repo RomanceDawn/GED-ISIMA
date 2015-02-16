@@ -1,6 +1,9 @@
 <?php include("./header.php"); ?>
  <div class="container theme-showcase" role="main">
-
+   <div class="page-header">
+         <h1>Recherche de rapports</h1>
+         
+     </div>
     <form method="post" action="../php/rechercheManager.php" enctype="multipart/form-data">
         <table>
 
@@ -8,6 +11,7 @@
                 <td>
                     <label for="titre">intitule : </label>
                 </td>
+                
             </tr>
             <tr>
                 <td><input type="text" name="titre" value="" id="titre" /></td>
@@ -15,7 +19,7 @@
             </tr>
              <tr>
                 <td>
-                    <label for="titre">sujet : </label>
+                    <label for="sujet">sujet : </label>
                 </td>
             </tr>
             <tr>
@@ -24,7 +28,7 @@
             </tr>
              <tr>
                 <td>
-                    <label for="titre">description : </label>
+                    <label for="description">description : </label>
                 </td>
             </tr>
             <tr>
@@ -57,7 +61,7 @@
                 </td>
             </tr>
             <tr>
-                <td><label for="titre">mots-clés : </label></td>
+                <td><label for="mots-clés">mots-clés : </label></td>
             </tr>
             <tr>
                 <td><input type="text" name="motsClefs" value="" id="motsClefs" /></td>
