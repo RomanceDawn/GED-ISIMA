@@ -16,11 +16,22 @@ class Rapport {
     const TEXTE = 'texte';
 
     protected $attributs = array();
-
+    public function getTexte()
+    {
+       return  $this->attributs[self::TEXTE];
+    }
     
     public function getNomOrigin()
     {
        return  $this->attributs[self::NOM_ORIG];
+    }
+    public function getAjouteur()
+    {
+       return  $this->attributs[self::AJOUTEUR];
+    }
+    public function getNomServer()
+    {
+       return  $this->attributs[self::NOM_SERV];
     }
      public function getTitre()
     {
@@ -39,7 +50,16 @@ class Rapport {
     public function getAttributes() {
         return $this->attributs;
     }
-
+    public function getDateCreation()
+    {
+        return $this->attributs[self::DATE_CREATION];
+         
+    }
+    public function getDateModification()
+    {
+        return $this->attributs[self::DATE_MODIFICATION];
+         
+    }
     public function getAnnee()
     {
         $annee=substr($this->attributs[self::DATE_CREATION],0,4);

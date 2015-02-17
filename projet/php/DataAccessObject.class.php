@@ -89,7 +89,13 @@ class DataAccessObject {
         return $result->fetch();
         
     }
-
+    public function prepare($requete) {
+        return $this->link->prepare($requete);     
+    }
+    
+    public function execute() {
+        return $this->link->exec();     
+    }
     /**
      * 
      * @return type

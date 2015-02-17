@@ -10,7 +10,7 @@
     $sujet=$_POST['sujet'];
     $description=$_POST['description'];
     $rapports=QueryManager::search($motsClefs,$annee,$auteur,$titre,$sujet,$description);
-    if(count($rapports)>1)
+    if(count($rapports)>0)
     {
         $_SESSION['rapports']=$rapports;
 

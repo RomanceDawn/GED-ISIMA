@@ -15,25 +15,45 @@ class QueryManager {
         $values = "(";
         foreach ($object->getAttributes() as $col => $value) {
             $keys .= " `" . $col . "`,";
+            
             if ($value != null) {
                 //$value = mysql_real_escape_string($value);
 
-                $value = mysqli_real_escape_string(DataAccessObject::getInstance()->getLink(), $value);
+               // $value = mysqli_real_escape_string(DataAccessObject::getInstance()->getLink(), $value);
                 $values .= " '" . $value . "',";
             } else {
                 $values .= ' NULL,';
             }
         }
+     
         $keys[strlen($keys) - 1] = ")";
         $values[strlen($values) - 1] = ")";
-
+       // echo $values;
         $requete = "INSERT INTO `ged_rapport` "
                 . $keys . " VALUES " . $values;
-
+   //echo $requete;
         //echo '<script type="text/javascript"> alert("'. $requete.'"); </script> ';
+        
+        $requete = "INSERT INTO `ged_rapport` (id, date_creation,date_modification,nom_origin,nom_server,auteur,titre,sujet, mots_clefs,description, ajouteur,texte) values(:id,:date_creation,:date_modification,:nom_origin,:nom_server,:auteur,:titre,:sujet,:mots_clefs,:description,:ajouteur,:texte)";
+       
+        
         try {
             $DAO = DataAccessObject::getInstance();
-            $DAO->query($requete);
+            $stmt=$DAO->prepare($requete);
+            $stmt->bindParam(':id', $object->getID());
+            $stmt->bindParam(':date_creation', $object->getDateCreation());
+            $stmt->bindParam(':date_modification', $object->getDateModification());
+            $stmt->bindParam(':nom_origin', $object->getNomOrigin());
+            $stmt->bindParam(':nom_server', $object->getNomServer());
+            $stmt->bindParam(':auteur', $object->getAuteur());
+            $stmt->bindParam(':titre', $object->getTitre());
+            $stmt->bindParam(':sujet', $object->getSujet());
+            $stmt->bindParam(':mots_clefs', $object->getMotsClefs());
+            $stmt->bindParam(':description', $object->getDescription());
+            $stmt->bindParam(':ajouteur', $object->getAjouteur());
+            $stmt->bindParam(':texte', $object->getTexte());
+            $stmt->execute();
+           // $DAO->query($requete);
             return $DAO->getLastInsertedID();
         } catch (Exception $e1) {
             throw new ErrorException("Erreur avec la base de données.", null, null, null, null, $e1);

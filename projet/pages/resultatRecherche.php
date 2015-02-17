@@ -20,7 +20,7 @@
                $nomAffichage="Rapport de ".$rapports[$i]->getAuteur();
       
                echo "<td>".$nomAffichage."</td>";
-               echo "<td><a href=../rapports/".$rapports[$i]->getNomServ()." TARGET=\"_blank\">télécharger</a></td>";
+               echo "<td><a href=../rapports/".$rapports[$i]->getNomServ()." TARGET=\"_blank\">Télécharger</a></td>";
                if (!empty($_SESSION['login'])) {
                    $id=$rapports[$i]->getID();
                    $str_rapport=serialize($rapports[$i]);
