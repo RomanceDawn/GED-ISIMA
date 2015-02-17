@@ -68,14 +68,9 @@
 
             </tr>
             <tr><td><input type="submit" name="submit" value="Rechercher"></td></tr>
-<?php         if (isset($_GET['erreur'])) {
-            switch ($_GET['erreur']) {
-                case 1:
+<?php         if (isset($_GET['no_result'])) {
                     echo '<tr><td>Aucun résultat</td></tr>';
-                    break;
-
-            }
-        }
+                }
 ?>
 
          </table>

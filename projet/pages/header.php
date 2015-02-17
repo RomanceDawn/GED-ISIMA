@@ -16,13 +16,14 @@ session_start();
 
         <link rel="stylesheet" type="text/css" href="../css/dropzone.css">
         <link rel="stylesheet" type="text/css" href="../css/theme.css">
+        <link rel="stylesheet" type="text/css" href="../css/style.css">
         <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="../css/bootstrap-theme.min.css">
         <script>
             var Dropzone = require("enyo-dropzone");
             Dropzone.autoDiscover = false;
         </script>
-          <script src="../javascript/jquery-2.1.3.js"></script>
+        <script src="../javascript/jquery-2.1.3.js"></script>
         <script src="../javascript/bootstrap.min.js"></script>
         <script src="../javascript/dropzone.js"></script>
         <script src="../javascript/script.js"></script>
@@ -75,8 +76,8 @@ session_start();
                  if(!empty($_SESSION['login']))
                  {
                     echo"
-                    <li><a href=\"#\">Changer de mot de passe</a></li>
-                    <li><a href=\"#\">Ajouter un administrateur</a></li>
+                    <li><a href=\"modifierMotDePasse.php\">Changer de mot de passe</a></li>
+                    <li><a href=\"ajouterAdministrateur.php\">Ajouter un administrateur</a></li>
                     <li><a href=\"../php/deconnexionManager.php\">Se déconnecter</a></li>
                     ";
                  }

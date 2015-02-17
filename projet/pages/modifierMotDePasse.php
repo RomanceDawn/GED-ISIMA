@@ -6,14 +6,14 @@
   
     <div class="panel panel-primary">
     <div class="panel-heading">
-         <h3>Ajouter un administrateur</h3>
+         <h3>Changer son mot de passe</h3>
      </div>
     <div class="panel-body">
     <form class="form-signin" method="post" action="../php/rechercheManager.php" enctype="multipart/form-data">
         <table class="formUpdatePass">
             <tr >
                 <td>
-                    <label for="oldPassword">Login * </label>
+                    <label for="oldPassword">Ancien mot de passe * </label>
                 </td>
            
                 <td><input type="password" name="oldPassword" class="form-control"  value="" id="titre" /></td>
@@ -21,7 +21,7 @@
             </tr>
              <tr>
                 <td>
-                    <label for="newPassword">Mot de passe * </label>
+                    <label for="newPassword">Nouveau mot de passe * </label>
                 </td>
            
                 <td><input type="password" name="newPassword" class="form-control"  value="" id="newPassword" /></td>
@@ -29,7 +29,7 @@
             </tr>
              <tr>
                 <td>
-                    <label for="newPasswordRe">Répéter mot de passe * </label>
+                    <label for="newPasswordRe">Confirmation * </label>
                 </td>
            
                 <td><input type="password" name="newPasswordRe" class="form-control"  value="" id="newPasswordRe" /></td>

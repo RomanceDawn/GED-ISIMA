@@ -24,12 +24,22 @@ class DataAccessObject {
      * @throws ErrorException if an error occured with the databse
      */
     private function __construct() {
-        $this->link = new mysqli(self::SERVER, self::USER, self::PASSWORD, self::DATABASE);
+        /*$this->link = new mysqli(self::SERVER, self::USER, self::PASSWORD, self::DATABASE);
         if (mysqli_connect_errno()) {
             throw new ErrorException("Impossible de se connecter à la base de données: "
             . mysqli_error($this->link), mysqli_errno($this->link));
         }
-        $this->link->query("SET names 'utf8';");
+        $this->link->query("SET names 'utf8';");*/
+        try
+        {
+                $this->link = new PDO('mysql:host=localhost;dbname=ged_isima;charset=utf8', self::USER, '');
+                $this->link->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+        }
+        catch (Exception $e)
+        {
+                throw new ErrorException("Impossible de se connecter à la base de données: " . $e->getMessage());
+        }
+        
     }
 
     /**
@@ -71,11 +81,13 @@ class DataAccessObject {
      * @return type
      * @throws InvalidArgumentException
      */
-    public function fetch($result, $fetch_type = MYSQLI_BOTH) {
-        if (!($result instanceof mysqli_result)) {
+    public function fetch($result) {
+        if ($result ===false) {
             throw new InvalidArgumentException("Parameter 1 must be a result.");
         }
-        return $result->fetch_array($fetch_type);
+      //  return $result->fetch_array($fetch_type);
+        return $result->fetch();
+        
     }
 
     /**

@@ -8,7 +8,10 @@ if (empty($_SESSION['login'])) {
 
 ?>
  <div class="container theme-showcase" role="main">
-
+    <div class="page-header">
+         <h1>Upload multiple</h1>
+         
+     </div>
         <div id="actions" class="row">
 
             <div class="col-lg-7">

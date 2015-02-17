@@ -18,11 +18,7 @@
     }
     else
     {
-
-        header('HTTP/1.1 500 Internal Server Error');
-        header('Content-type: text/plain');
-        header("Location: ../pages/recherche.php?erreur=1");
-         
+        header("Location: ../pages/recherche.php?no_result=1");    
     }
    
 
