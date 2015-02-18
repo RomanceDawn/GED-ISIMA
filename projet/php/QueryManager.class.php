@@ -203,6 +203,7 @@ class QueryManager {
 	$requete="SELECT `login` FROM `ged_compte` WHERE `login`=\"" . $login . "\"";
 	if($password!="")
 	{
+	   $password=md5($password);
 	   $requete = $requete. " AND `password`=\"" . $password . "\"";
 	}
 	

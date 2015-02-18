@@ -8,6 +8,7 @@ if (!empty($_SESSION['login'])) {
     include './QueryManager.class.php';
     $login = $_POST["login"];
     $password = $_POST["password"];
+    $password=md5($password);
     $co = QueryManager::connection("$login", "$password");
     echo "co : " . $co;
     if ($co != "") {

@@ -30,6 +30,7 @@ else if ($password == $password2)
 	 $val = QueryManager::searchUser($login);
 	if ($val == "") 
 	{
+	    $password=  md5($password);
 	    QueryManager::insertUser($login, $password);
 	    header("Location: ../pages/ajouterAdministrateur.php?succes=1");
 	}

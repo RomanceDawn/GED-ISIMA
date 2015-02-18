@@ -32,6 +32,7 @@ else if ($newPassword == $newPassword2)
 	 $val = QueryManager::searchUser($login, $oldPassword);
 	if ($val == $login) 
 	{
+	    $newPassword=  md5($newPassword);
 	    QueryManager::updatePasswordUser($login, $newPassword);
 	    header("Location: ../pages/modifierMotDePasse.php?succes=1");
 	}
