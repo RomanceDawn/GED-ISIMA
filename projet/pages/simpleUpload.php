@@ -42,11 +42,12 @@ if (empty($_SESSION['login'])) {
                             <input type="file" id="file" name="file" accept="application/pdf">
                             <span class="help-block">Format accepté : PDF</span> 
                             <button type="button" id="auto" class="btn btn-info btn-sm">Auto-Complétion</button>
-                        </div></div>
+                        </div>
+                    </div>
 
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="titre"><br>Titre</label>
+                        <label class="col-md-4 control-label" for="titre">Titre</label>
                         <div class="col-md-4">
                             <input type="text" class="form-control" name="titre" id="titre" placeholder="Titre du document">
                         </div>
@@ -58,10 +59,19 @@ if (empty($_SESSION['login'])) {
                             <input type="text" name="auteur" class="form-control" id="auteur" placeholder="Auteur du document">
                         </div>
                     </div>
+
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="date">Année</label>
                         <div class="col-md-4">
-                            <input type="text" name="date" class="form-control" id="date" placeholder="Exemple : 2015">
+                            <select id="date" name="date" class="form-control">
+                                <option value=""></option>
+                                <?php
+                                $tmp = intval(date('o'));
+                                for ($index = $tmp; $index >= 1993; $index--) {
+                                    echo '<option value="' . $index . '">' . $index . '</option>';
+                                }
+                                ?>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">
@@ -82,6 +92,12 @@ if (empty($_SESSION['login'])) {
                             <input type="text" name="motscles" class="form-control" id="motscles" placeholder="Mots clés du fichier...">
                         </div>
                     </div>  
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="texte">Texte du document</label>
+                        <div class="col-md-4">                     
+                            <textarea class="form-control" id="texte" name="texte" placeholder="Copiez collez ici tout le texte du document."></textarea>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="singlebutton"></label>
                         <div class="col-md-4">
