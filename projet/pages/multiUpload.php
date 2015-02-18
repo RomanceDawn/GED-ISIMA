@@ -95,6 +95,7 @@ if (empty($_SESSION['login'])) {
                 autoQueue: false, // Make sure the files aren't queued until manually added
                 previewsContainer: "#previews", // Define the container to display the previews
                 clickable: ".fileinput-button" // Define the element that should be used as click trigger to select files.
+                
             });
 
             myDropzone.on("success", function (file, response) {
