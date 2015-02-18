@@ -12,7 +12,7 @@ session_start();
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Theme Template for Bootstrap</title>
+    <title>isiARCHIVE</title>
 
         <link rel="stylesheet" type="text/css" href="../css/dropzone.css">
         <link rel="stylesheet" type="text/css" href="../css/theme.css">
@@ -49,7 +49,7 @@ session_start();
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index.php">ISI_RAPPORT</a>
+          <a class="navbar-brand" href="index.php">isiARCHIVE</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
