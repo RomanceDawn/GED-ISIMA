@@ -1,9 +1,10 @@
 <?php include("./header.php"); ?>
  <div class="container theme-showcase" role="main">
-     <div class="page-header">
-         <h1>Résultat Recherche</h1>
-         
+     <div class="panel panel-primary">
+    <div class="panel-heading">
+         <h3>Résultat recherche</h3>
      </div>
+    <div class="panel-body">
        <?php 
        if(!empty($_SESSION['rapports']))
        {
@@ -35,9 +36,8 @@
            echo "</table>";
            echo "</div>";
        }
-       
-       
-       
        ?>
 </div>
+     </div>
+ </div>
 <?php include("./footer.php"); ?>

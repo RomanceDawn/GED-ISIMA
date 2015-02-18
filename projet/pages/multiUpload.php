@@ -8,10 +8,11 @@ if (empty($_SESSION['login'])) {
 
 ?>
  <div class="container theme-showcase" role="main">
-    <div class="page-header">
-         <h1>Upload multiple</h1>
-         
+   <div class="panel panel-primary">
+    <div class="panel-heading">
+         <h3>Upload multiple</h3>
      </div>
+    <div class="panel-body">
         <div id="actions" class="row">
 
             <div class="col-lg-7">
@@ -163,7 +164,8 @@ if (empty($_SESSION['login'])) {
 
 
 </div>
-
+   </div>
+ </div>
 <?php
 include("./footer.php");
 ?>

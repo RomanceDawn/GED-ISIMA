@@ -1,11 +1,13 @@
 <?php include("./header.php"); ?>
  <div class="container theme-showcase" role="main">
-   <div class="page-header">
-         <h1>Recherche de rapports</h1>
-         
+
+     <div class="panel panel-primary">
+    <div class="panel-heading">
+         <h3>Recherche de rapports</h3>
      </div>
+    <div class="panel-body">
     <form method="post" action="../php/rechercheManager.php" enctype="multipart/form-data">
-        <table>
+        <table class="formSpace">
 
             <tr>
                 <td>
@@ -75,5 +77,6 @@
 
          </table>
     </form>
-
+    </div>
+     </div>
 <?php include("./footer.php"); ?>

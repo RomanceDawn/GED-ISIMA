@@ -7,10 +7,11 @@ if (empty($_SESSION['login'])) {
 ?>
 
  <div class="container theme-showcase" role="main">
-      <div class="page-header">
-         <h1>Upload simple</h1>
-         
+      <div class="panel panel-primary">
+    <div class="panel-heading">
+         <h3>Upload simple</h3>
      </div>
+    <div class="panel-body">
         <form method="post" action="../php/simpleUploadManager.php" enctype="multipart/form-data" id="file-form">
             <?php
             if (isset($_GET['erreur'])) {
@@ -133,5 +134,6 @@ if (empty($_SESSION['login'])) {
     }
 
 </script>
-
+      </div>
+ </div>
 <?php include("./footer.php"); ?>

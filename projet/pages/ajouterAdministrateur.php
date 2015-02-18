@@ -10,7 +10,7 @@
      </div>
     <div class="panel-body">
     <form class="form-signin" method="post" action="../php/rechercheManager.php" enctype="multipart/form-data">
-        <table class="formUpdatePass">
+        <table class="formSpace">
             <tr >
                 <td>
                     <label for="oldPassword">Login * </label>
