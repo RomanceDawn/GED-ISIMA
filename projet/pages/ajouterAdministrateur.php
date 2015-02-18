@@ -54,11 +54,14 @@
 			    case 5 :
 				echo '<tr><td colspan="2">Ce login existe déjà</td></tr>';
 				break;
+			    case 5 :
+				echo '<tr><td colspan="2">le mot de passe doit faire au moins 3 caractères</td></tr>';
+				break;
 			}
 		    }
 		    else if (isset($_GET['succes']))
 		    {
-			echo '<tr><td>Ajout d\'un administrateur réussi</td></tr>';
+			echo '<tr><td colspan="2">Ajout d\'un administrateur réussi</td></tr>';
 		    }
             ?>
         </table>

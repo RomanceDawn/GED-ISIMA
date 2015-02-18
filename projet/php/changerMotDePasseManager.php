@@ -27,15 +27,22 @@ else if ($newPassword2 == "")
 } 
 else if ($newPassword == $newPassword2)
 {
-    $val = QueryManager::searchUser($login, $oldPassword);
-    if ($val == $login) 
+    if(strlen($newPassword)>3)
     {
-	QueryManager::updatePasswordUser($login, $newPassword);
-	header("Location: ../pages/modifierMotDePasse.php?succes=1");
+	 $val = QueryManager::searchUser($login, $oldPassword);
+	if ($val == $login) 
+	{
+	    QueryManager::updatePasswordUser($login, $newPassword);
+	    header("Location: ../pages/modifierMotDePasse.php?succes=1");
+	}
+	else {
+	    header("Location: ../pages/modifierMotDePasse.php?error_mdp=1");
+	}
     }
-    else {
-	header("Location: ../pages/modifierMotDePasse.php?error_mdp=1");
-    }
+    else
+    {
+	 header("Location: ../pages/modifierMotDePasse.php?error_mdp=6");
+    } 
 } 
 else
 {

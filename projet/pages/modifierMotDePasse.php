@@ -56,11 +56,14 @@
 			    case 5 :
 				echo '<tr><td colspan="2">Champ confirmation nouveau mot de passe non renseigné</td></tr>';
 				break;
+			    case 6 :
+			       echo '<tr><td colspan="2">Le mot de passe doit faire au moins 4 caractères</td></tr>';
+			       break;
 			}
 		    }
 		    else if (isset($_GET['succes']))
 		    {
-			echo '<tr><td>mot de passe changé avec succès</td></tr>';
+			echo '<tr><td colspan="2">mot de passe changé avec succès</td></tr>';
 		    }
 		    ?>
 

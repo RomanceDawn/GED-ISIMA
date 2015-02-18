@@ -19,21 +19,29 @@ else if ($password == "")
 {
     header("Location: ../pages/ajouterAdministrateur.php?error_form=2");
 } 
-else if ($password == "")
+else if ($password2 == "")
 {
     header("Location: ../pages/ajouterAdministrateur.php?error_form=3");
 } 
-else if ($password == $password)
+else if ($password == $password2)
 {
-    $val = QueryManager::searchUser($login);
-    if ($val == "") 
+    if(strlen($password)>3)
     {
-	QueryManager::insertUser($login, $password);
-	header("Location: ../pages/ajouterAdministrateur.php?succes=1");
+	 $val = QueryManager::searchUser($login);
+	if ($val == "") 
+	{
+	    QueryManager::insertUser($login, $password);
+	    header("Location: ../pages/ajouterAdministrateur.php?succes=1");
+	}
+	else {
+	    header("Location: ../pages/ajouterAdministrateur.php?error_form=5");
+	}
     }
-    else {
-	header("Location: ../pages/ajouterAdministrateur.php?error_form=5");
+    else
+    {
+	 header("Location: ../pages/ajouterAdministrateur.php?error_form=6");
     }
+   
 } 
 else
 {
