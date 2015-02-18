@@ -41,6 +41,4 @@ else
 {
 	header("Location: ../pages/modifierMotDePasse.php?error_mdp=2");
 }
-
-
 ?>

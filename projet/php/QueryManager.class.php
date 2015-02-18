@@ -198,10 +198,15 @@ class QueryManager {
 	}
     }
 
-    public static function searchUser($login, $password)
+    public static function searchUser($login, $password=NULL)
     {
-	$requete = "SELECT `login` FROM `ged_compte` WHERE `login`=\"" . $login . "\" AND `password`=\"" . $password . "\"";
-
+	$requete="SELECT `login` FROM `ged_compte` WHERE `login`=\"" . $login . "\"";
+	if($password!="")
+	{
+	   $requete = $requete. " AND `password`=\"" . $password . "\"";
+	}
+	
+	   
 	try
 	{
 	    $DAO = DataAccessObject::getInstance();
@@ -229,5 +234,23 @@ class QueryManager {
 	    throw new ErrorException("Erreur avec la base de données.", null, null, null, null, $e1);
 	}
     }
-
+    public static function insertUser($login,$password)
+    {
+	$requete = "INSERT INTO `ged_compte` (login,password) values(:login,:password)";
+	try
+	{
+	    $DAO = DataAccessObject::getInstance();
+	    $stmt = $DAO->prepare($requete);
+	    $stmt->bindParam(':login', $login);
+	    $stmt->bindParam(':password', $password);
+	   
+	    $stmt->execute();
+	    // $DAO->query($requete);
+	    return $DAO->getLastInsertedID();
+	} catch (Exception $e1)
+	{
+	    throw new ErrorException("Erreur avec la base de données.", null, null, null, null, $e1);
+	}
+    }
+  
 }
