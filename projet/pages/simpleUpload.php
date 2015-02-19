@@ -9,14 +9,14 @@ if (empty($_SESSION['login'])) {
 <div class="container theme-showcase" role="main">
     <div class="panel panel-primary">
         <div class="panel-heading">
-            <h3>Upload simple</h3>
+            <h3 >Upload simple</h3>
         </div>
         <div class="panel-body">
 
             <form class="form-horizontal" method="post" action="../php/simpleUploadManager.php" enctype="multipart/form-data" id="file-form">
                 <fieldset><?php
-                    if (isset($_GET['erreur'])) {
-                        switch ($_GET['erreur']) {
+                    if (isset($_SESSION['erreur'])) {
+                        switch ($_SESSION['erreur']) {
                             case 1:
                                 echo '<div class="alert alert-danger">
                         <strong>Erreur!</strong> Chargement du fichier.
@@ -28,11 +28,13 @@ if (empty($_SESSION['login'])) {
                       </div>';
                                 break;
                         }
+                         unset($_SESSION['erreur']);
                     }
-                    if (isset($_GET['success'])) {
+                    if (isset($_SESSION['success'])) {
                         echo '<div class="alert alert-success">
                         <strong>OK!</strong> Envoi du fichier réussie.
                       </div>';
+                        unset($_SESSION['success']);
                     }
                     ?>
 
@@ -49,14 +51,14 @@ if (empty($_SESSION['login'])) {
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="titre">Titre</label>
                         <div class="col-md-4">
-                            <input type="text" class="form-control" name="titre" id="titre" placeholder="Titre du document">
+                            <input type="text" class="form-control" name="titre" id="titre" placeholder="">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="auteur">Auteur</label>
                         <div class="col-md-4">
-                            <input type="text" name="auteur" class="form-control" id="auteur" placeholder="Auteur du document">
+                            <input type="text" name="auteur" class="form-control" id="auteur" placeholder="">
                         </div>
                     </div>
 
@@ -77,19 +79,19 @@ if (empty($_SESSION['login'])) {
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="sujet">Sujet</label>
                         <div class="col-md-4">
-                            <input type="text" name="sujet" class="form-control" id="sujet" placeholder="Sujet du document">
+                            <input type="text" name="sujet" class="form-control" id="sujet" placeholder="">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="motscles">Description</label>
                         <div class="col-md-4">
-                            <textarea name="description" id="description" class="form-control vertic"  rows="2" placeholder="Description du fichier..."></textarea>
+                            <textarea name="description" id="description" class="form-control vertic"  rows="2" placeholder=""></textarea>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="motscles">Mots clés</label>
                         <div class="col-md-4">
-                            <input type="text" name="motscles" class="form-control" id="motscles" placeholder="Mots clés du fichier...">
+                            <input type="text" name="motscles" class="form-control" id="motscles" placeholder="">
                         </div>
                     </div>  
                     <div class="form-group">
@@ -152,11 +154,13 @@ if (empty($_SESSION['login'])) {
                         var date = document.getElementById('date');
                         var motscles = document.getElementById('motscles');
                         var sujet = document.getElementById('sujet');
+                        var texte = document.getElementById('texte');
                         titre.value = obj.titre;
                         auteur.value = obj.auteur;
-                        date.value = obj.date_creation;
+                        date.value = obj.date;
                         motscles.value = obj.mots_clefs;
                         sujet.value = obj.sujet;
+                        texte.value = obj.texte;
 
                     } else {
                         alert('Une erreur est survenue.\n Auto-complétion impossible.');

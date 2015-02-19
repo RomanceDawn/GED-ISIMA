@@ -17,12 +17,15 @@ if (!empty($_FILES) && !empty($_POST)) {
 
         header('HTTP/1.1 500 Internal Server Error');
         header('Content-type: text/plain');
-        header("Location: ../pages/simpleUpload.php?erreur=2");
+        $_SESSION['erreur'] = 1;
+        header("Location: ../pages/simpleUpload.php");
         exit("Type de fichier non valide.");
     }
     include './Rapport.class.php';
     include './QueryManager.class.php';
-    $date_creation = NULL;
+    $date_creation = $_POST['date'];
+
+    $date_creation = $date_creation . '-01-01';
     $date_modification = NULL;
     $sujet = $_POST['sujet'];
     $description = $_POST['description'];
@@ -52,6 +55,14 @@ if (!empty($_FILES) && !empty($_POST)) {
 
 
     try {
+        if ($_POST['texte'] != "") {
+            $texte = $_POST['texte'];
+        } else {
+            include '../parser/parser-texte/Parser.class.php';
+            $texte = PdfParser::parseFile($tempFile);
+        }
+
+        $texte = iconv('UTF-8', 'UTF-8//IGNORE', $texte);
         include '../parser/parser-metadata/pdf.php';
         $handle = fopen($tempFile, 'rb');
         $pdf = new PdfFileReader($handle);
@@ -74,10 +85,10 @@ if (!empty($_FILES) && !empty($_POST)) {
 //                case 'subject':
 //                    $sujet = $value;
 //                    break;
-                case 'creation_date':
-                    $timestamp = strtotime(substr($value, 2, 8));
-                    $date_creation = date('Y-m-d', $timestamp);
-                    break;
+//                case 'creation_date':
+//                    $timestamp = strtotime(substr($value, 2, 8));
+//                    $date_creation = date('Y-m-d', $timestamp);
+//                    break;
                 case 'mod_date':
                     $timestamp = strtotime(substr($value, 2, 8));
                     $date_modification = date('Y-m-d', $timestamp);
@@ -86,21 +97,28 @@ if (!empty($_FILES) && !empty($_POST)) {
         }
 
         fclose($handle);
-        include '../parser/parser-texte/Parser.class.php';
-        $texte = PdfParser::parseFile($tempFile);
-        $texte = iconv('UTF-8', 'UTF-8//IGNORE', $texte);
     } catch (Exception $e) {
         
+    }
+
+    if (intval(substr($date_creation, 0, 4)) < 1993) {
+        unset($date_creation);
+    }
+    if (intval(substr($date_modification, 0, 4)) < 1993) {
+
+        unset($date_modification);
     }
     $temp = new Rapport($description, $titre, $sujet, $date_creation, $date_modification, $nom_origin, $mots_clefs, $nom_server, $auteur, $ajouteur, $texte);
 
     $id = QueryManager::insert($temp);
     move_uploaded_file($tempFile, $targetFile);
     //echo $id;
-    header("Location: ../pages/simpleUpload.php?success=1");
+    $_SESSION['success'] = 1;
+    header("Location: ../pages/simpleUpload.php");
 } else {
     header('HTTP/1.1 500 Internal Server Error');
     header('Content-type: text/plain');
-    header("Location: ../pages/simpleUpload.php?erreur=1");
+    $_SESSION['erreur'] = 1;
+    header("Location: ../pages/simpleUpload.php");
     exit("Erreur lors du transfert de fichier.");
 }

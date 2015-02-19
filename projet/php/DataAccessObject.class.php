@@ -32,7 +32,7 @@ class DataAccessObject {
         $this->link->query("SET names 'utf8';");*/
         try
         {
-                $this->link = new PDO('mysql:host=localhost;dbname=ged_isima;charset=utf8', self::USER, '');
+                $this->link = new PDO('mysql:host=localhost;dbname=ged_isima;charset=utf8', self::USER, self::PASSWORD);
                 $this->link->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
         }
         catch (Exception $e)
@@ -102,7 +102,7 @@ class DataAccessObject {
      */
     public function getLastInsertedID() {
 
-        return $this->link->insert_id;
+        return $this->link->lastInsertId();
     }
 
 }

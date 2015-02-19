@@ -5,16 +5,27 @@ include("./header.php");
 if (empty($_SESSION['login'])) {
     header('Location: ../pages/index.php');
 }
-
 ?>
- <div class="container theme-showcase" role="main">
-   <div class="panel panel-primary">
-    <div class="panel-heading">
-         <h3>Upload multiple</h3>
-     </div>
-    <div class="panel-body">
+<div class="container theme-showcase" role="main">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3>Upload multiple</h3>
+        </div>
+        <div id="success-files" class="alert alert-success fade in" style="display:none;opacity:0;margin: auto; width: 80%; margin-top: 10px;">
+
+        </div>
+
+        <div id="error-files" class="panel panel-danger" style="display:none;opacity:0;margin: auto; width: 80%; margin-top: 10px;">
+            <div class="panel-heading">
+                <h3 class="panel-title"></h3>
+            </div>
+            <div class="panel-body"></div>
+        </div>
+
         <div id="actions" class="row">
 
+            <p class="text-info" style="margin:10px;">Vous pouvez glisser-déposer les rapports sur cette fenêtre.
+                Seuls les fichiers PDF sont acceptés.</p>
             <div class="col-lg-7">
                 <!-- The fileinput-button span is used to style the file input field as button -->
                 <span class="btn btn-success fileinput-button">
@@ -46,9 +57,9 @@ if (empty($_SESSION['login'])) {
 
             <div id="template" class="file-row">
                 <!-- This is used as the file preview template -->
-<!--                <div>
-                    <span class="preview"><img data-dz-thumbnail /></span>
-                </div>-->
+                <!--                <div>
+                                    <span class="preview"><img data-dz-thumbnail /></span>
+                                </div>-->
                 <div class="dropName">
                     <p class="name" data-dz-name></p>
                     <strong class="error text-danger" data-dz-errormessage></strong>
@@ -95,7 +106,7 @@ if (empty($_SESSION['login'])) {
                 autoQueue: false, // Make sure the files aren't queued until manually added
                 previewsContainer: "#previews", // Define the container to display the previews
                 clickable: ".fileinput-button" // Define the element that should be used as click trigger to select files.
-                
+
             });
 
             myDropzone.on("success", function (file, response) {
@@ -129,15 +140,29 @@ if (empty($_SESSION['login'])) {
 
             });
             myDropzone.on("addedfile", function (file) {
-                // Hookup the start button
-                file.previewElement.querySelector(".start").onclick = function () {
-                    myDropzone.enqueueFile(file);
-                };
+                var parts = file.name.split(".");
+                var ext = (parts[(parts.length - 1)]);
+                if (ext.toLowerCase() !== "pdf")
+                {
+//                    alert();
+                    this.removeFile(file);
+                }
+                else {
+                    // Hookup the start button
+                    file.previewElement.querySelector(".start").onclick = function () {
+                        myDropzone.enqueueFile(file);
+
+                    };
+                }
+
             });
 
             // Update the total progress bar
             myDropzone.on("totaluploadprogress", function (progress) {
-                document.querySelector("#total-progress .progress-bar").style.width = progress + "%";
+                var perc = (this.getFilesWithStatus(Dropzone.SUCCESS).length + progress * (this.getFilesWithStatus(Dropzone.QUEUED).length + 1) / 100
+                        ) / (this.getFilesWithStatus(Dropzone.SUCCESS).length + this.getFilesWithStatus(Dropzone.QUEUED).length + 1);
+                document.querySelector("#total-progress .progress-bar").style.width = perc * 100 + "%";
+                //document.querySelector("#total-progress .progress-bar").style.width = progress + "%";
             });
 
             myDropzone.on("sending", function (file) {
@@ -150,6 +175,35 @@ if (empty($_SESSION['login'])) {
             // Hide the total progress bar when nothing's uploading anymore
             myDropzone.on("queuecomplete", function (progress) {
                 document.querySelector("#total-progress").style.opacity = "0";
+                //alert(this.getFilesWithStatus(Dropzone.ERROR).length);
+                var fileserror = this.getFilesWithStatus(Dropzone.ERROR);
+                var filessuccess = this.getFilesWithStatus(Dropzone.SUCCESS);
+                if (fileserror.length > 0)
+                {
+                    var list = "";
+                    var arrayLength = fileserror.length;
+                    for (var i = 0; i < arrayLength; i++) {
+
+                        list += fileserror[i].name;
+                        list += "<br/>";
+                    }
+
+                    document.querySelector("#error-files").style.display = "block";
+                    document.querySelector("#error-files").style.opacity = "1";
+
+
+                    var err = document.getElementById('error-files');
+                    err.children[0].innerHTML = "<strong>" + fileserror.length + " erreur(s).</strong> Veuillez passer par la page d'uplaod simple pour ces fichiers :";
+                    err.children[1].innerHTML = list;
+                }
+
+                if (filessuccess.length > 0)
+                {
+                    document.querySelector("#success-files").style.display = "block";
+                    document.querySelector("#success-files").style.opacity = "1";
+                    document.getElementById('success-files').innerHTML = "<strong>" + filessuccess.length + " fichiers(s)</strong> envoyés avec succés.";
+
+                }
             });
 
             // Setup the buttons for all transfers
@@ -161,12 +215,19 @@ if (empty($_SESSION['login'])) {
             document.querySelector("#actions .cancel").onclick = function () {
                 myDropzone.removeAllFiles(true);
             };
+
+            window.onbeforeunload = function () {
+                if(myDropzone.getFilesWithStatus(Dropzone.PROCESSING).length>0
+                        ||myDropzone.getFilesWithStatus(Dropzone.QUEUED).length>0 )
+                return 'Des fichiers sont en cours d\'envoie.';
+
+            };
         </script>
 
 
+    </div>
 </div>
-   </div>
- </div>
+ 
 <?php
 include("./footer.php");
 ?>

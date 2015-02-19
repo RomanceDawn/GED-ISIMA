@@ -5,6 +5,7 @@ session_start();
 <html>
     <head>
         <meta charset="UTF-8">
+        <link rel="icon" href="../images/favicon.png">
         <title>ISIRapport</title>
         <script src="../javascript/dropzone.js"></script>
         <link rel="stylesheet" type="text/css" href="../css/dropzone.css">

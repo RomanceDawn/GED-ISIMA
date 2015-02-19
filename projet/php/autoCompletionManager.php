@@ -21,7 +21,7 @@ if (!empty($_FILES)) {
     }
     include './Rapport.class.php';
     include './QueryManager.class.php';
-//    $date_creation = NULL;
+    $date_creation = NULL;
 //    $date_modification = NULL;
     $sujet = NULL;
 //    $description = NULL;
@@ -59,21 +59,27 @@ if (!empty($_FILES)) {
                 case 'subject':
                     $sujet = $value;
                     break;
-//                case 'creation_date':
-//                    $timestamp = strtotime(substr($value, 2, 8));
+                case 'creation_date':
+                    $timestamp = strtotime(substr($value, 2, 8));
 //                    $date_creation = date('Y-m-d', $timestamp);
-//                    break;
+                    $date_creation = date('Y', $timestamp);
+                    break;
 //                case 'mod_date':
 //                    $timestamp = strtotime(substr($value, 2, 8));
 //                    $date_modification = date('Y-m-d', $timestamp);
 //                    break;
             }
         }
+                include '../parser/parser-texte/Parser.class.php';
+        $texte = PdfParser::parseFile($tempFile);
+        $texte = iconv('UTF-8', 'UTF-8//IGNORE', $texte);
         $data = array(
             "titre" => $titre,
             "auteur" => $auteur,
             "mots_clefs" => $mots_clefs,
-            "sujet" =>$sujet
+            "sujet" =>$sujet,
+            "date" =>$date_creation,
+            "texte"=> $texte
         );
         fclose($handle);
 //        unlink($tempFile);
