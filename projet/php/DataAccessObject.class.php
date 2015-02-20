@@ -118,6 +118,8 @@ class DataAccessObject {
 	$chaine=mysql_real_escape_string($chaine);
 	return $chaine;
     }
+    
+ 
 }
 
 ?>

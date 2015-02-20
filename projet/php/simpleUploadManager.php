@@ -101,6 +101,12 @@ if (!empty($_FILES) && !empty($_POST)) {
         
     }
 
+    $sujet = iconv('UTF-8', 'UTF-8//IGNORE', $sujet);
+    $description = iconv('UTF-8', 'UTF-8//IGNORE', $description);
+    $auteur = iconv('UTF-8', 'UTF-8//IGNORE', $auteur);
+    $titre = iconv('UTF-8', 'UTF-8//IGNORE', $titre);
+    $mots_clefs = iconv('UTF-8', 'UTF-8//IGNORE', $mots_clefs);
+
     if (intval(substr($date_creation, 0, 4)) < 1993) {
         unset($date_creation);
     }

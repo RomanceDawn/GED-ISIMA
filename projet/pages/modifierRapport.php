@@ -5,10 +5,12 @@ if (empty($_SESSION['login'])) {
     header('Location: ../pages/index.php');
 }
 
-if (isset($_SESSION['rapport']) && !empty($_SESSION['rapport'])) {
+if (isset($_GET['id']) && !empty($_GET['id'])) {
     require_once '../php/Rapport.class.php';
-    $str_rapport = $_SESSION['rapport'];
-    $rapport = unserialize($str_rapport);
+    require_once '../php/QueryManager.class.php';
+    $id = $_GET['id'];
+    $rapport = QueryManager::getRapportById($id);
+    //echo var_dump($rapport);
 }
 ?>
 <div class="container theme-showcase" role="main">
@@ -23,14 +25,14 @@ if (isset($_SESSION['rapport']) && !empty($_SESSION['rapport'])) {
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="titre">Titre</label>
                         <div class="col-md-4">
-                            <input type="text" class="form-control" name="titre" id="titre" placeholder="" value="<?php echo $rapport->getTitre(); ?>">
+                            <input type="text" class="form-control" name="titre" id="titre" placeholder="" value="<?php echo  strip_tags($rapport->getTitre()) ; ?>">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="auteur">Auteur</label>
                         <div class="col-md-4">
-                            <input type="text" name="auteur" class="form-control" id="auteur" placeholder="" value="<?php echo $rapport->getAuteur(); ?>">
+                            <input type="text" name="auteur" class="form-control" id="auteur" placeholder="" value="<?php echo strip_tags($rapport->getAuteur()); ?>">
                         </div>
                     </div>
 
@@ -49,7 +51,7 @@ if (isset($_SESSION['rapport']) && !empty($_SESSION['rapport'])) {
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="sujet" value="<?php echo $rapport->getSujet(); ?>">Sujet</label>
+                        <label class="col-md-4 control-label" for="sujet" value="<?php echo strip_tags($rapport->getSujet()); ?>">Sujet</label>
                         <div class="col-md-4">
                             <input type="text" name="sujet" class="form-control" id="sujet" placeholder="">
                         </div>
@@ -57,13 +59,13 @@ if (isset($_SESSION['rapport']) && !empty($_SESSION['rapport'])) {
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="motscles">Description</label>
                         <div class="col-md-4">
-                            <textarea name="description" id="description" class="form-control vertic"  rows="2" placeholder=""><?php echo $rapport->getDescription(); ?></textarea>
+                            <textarea name="description" id="description" class="form-control vertic"  rows="2" placeholder=""><?php echo strip_tags($rapport->getDescription()); ?></textarea>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="motscles">Mots clés</label>
                         <div class="col-md-4">
-                            <input type="text" name="motscles" class="form-control" id="motscles" placeholder="" value="<?php echo $rapport->getMotsClefs(); ?>">
+                            <input type="text" name="motscles" class="form-control" id="motscles" placeholder="" value="<?php echo strip_tags($rapport->getMotsClefs()); ?>">
                         </div>
                     </div>  
                     <div class="form-group">
