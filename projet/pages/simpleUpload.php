@@ -64,7 +64,7 @@ if (empty($_SESSION['login'])) {
 
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="date">Année</label>
-                        <div class="col-md-4">
+                        <div class="col-md-2">
                             <select id="date" name="date" class="form-control">
                                 <option value=""></option>
                                 <?php
