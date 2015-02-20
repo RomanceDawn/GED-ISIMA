@@ -24,9 +24,9 @@
                echo "<td><a href=../rapports/".$rapports[$i]->getNomServ()." TARGET=\"_blank\">Télécharger</a></td>";
                if (!empty($_SESSION['login'])) {
                    $id=$rapports[$i]->getID();
-                   $str_rapport=serialize($rapports[$i]);
-                   $_SESSION['rapport']=$str_rapport;
-                    echo "<td><a href=modifierRapport.php>Modifier</a></td>";
+//                   $str_rapport=serialize($rapports[$i]);
+//                   $_SESSION['rapport']=$str_rapport;
+                    echo "<td><a href=modifierRapport.php>Modifier?id=".$id."</a></td>";
                    echo "<td><a href='#' onClick=supprimerRapport('".$rapports[$i]->getID()."');return false;\">Supprimer</a></td>";
                     //echo "<td><a href=../php/suppressionManager.php>Supprimer</a></td>";
                }

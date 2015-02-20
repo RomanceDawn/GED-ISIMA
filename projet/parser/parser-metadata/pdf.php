@@ -9,6 +9,7 @@ class PdfFileReader {
   function PdfFileReader($stream) {
     # make sure stream is not empty.
     if (trim(fread($stream, 4096)) == '') {
+        throw new Exception("Error reading PDF: PDF is empty.");
       die("Error reading PDF: PDF is empty.");
     }
     fseek($stream, 0);
@@ -122,6 +123,7 @@ class PdfFileReader {
       $line = $this->read_next_end_line($stream);
     }
     if (substr($line, 0, 5) != '%%EOF') {
+        throw new Exception("Error reading PDF: EOF marker not found.");
       die("Error reading PDF: EOF marker not found.");
     }
     
@@ -129,6 +131,7 @@ class PdfFileReader {
     $startxref = (int) $line;
     $line = $this->read_next_end_line($stream);
     if (substr($line, 0, 9) != 'startxref') {
+        throw new Exception("Error reading PDF: startxref not found.");
       die("Error reading PDF: startxref not found.");
     }
     
@@ -141,6 +144,7 @@ class PdfFileReader {
       if ($x == "x") {
         $ref = fread($stream, 4);
         if (substr($ref, 0, 3) != 'ref') {
+            throw new Exception("Error reading PDF: xref table read error.");
           die("Error reading PDF: xref table read error.");
         }
         read_non_whitespace($stream);

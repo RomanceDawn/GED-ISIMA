@@ -18,12 +18,12 @@ if (empty($_SESSION['login'])) {
                     if (isset($_SESSION['erreur'])) {
                         switch ($_SESSION['erreur']) {
                             case 1:
-                                echo '<div class="alert alert-danger">
+                                echo '<div class="alert alert-danger text-center">
                         <strong>Erreur!</strong> Chargement du fichier.
                       </div>';
                                 break;
                             case 2:
-                                echo '<div class="alert alert-danger">
+                                echo '<div class="alert alert-danger text-center">
                         <strong>Erreur!</strong> Format fichier.
                       </div>';
                                 break;
@@ -31,7 +31,7 @@ if (empty($_SESSION['login'])) {
                          unset($_SESSION['erreur']);
                     }
                     if (isset($_SESSION['success'])) {
-                        echo '<div class="alert alert-success">
+                        echo '<div class="alert alert-success text-center">
                         <strong>OK!</strong> Envoi du fichier réussie.
                       </div>';
                         unset($_SESSION['success']);
@@ -125,7 +125,7 @@ if (empty($_SESSION['login'])) {
                     alert("Aucune fichier selectionner");
                     return;
                 }
-                uploadButton.innerHTML = 'Patientez...';
+                uploadButton.innerHTML = '<span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Patientez...';
                 event.preventDefault();
 
                 var formData = new FormData();

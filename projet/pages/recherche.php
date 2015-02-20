@@ -60,15 +60,16 @@
                         </div>
 
                     </div>                  
-                    
-                        <?php
-                        if (isset($_GET['no_result'])) {
-                            echo '<p class="bg-danger text-center" style=" margin:auto;padding:10px;">Aucun résultat </p>';
-                        }
-                        ?>
-                   
+
+                    <?php
+                    if (isset($_GET['no_result'])) {
+                        echo '<p class="bg-danger text-center" style=" margin:auto;padding:10px;">Aucun résultat </p>';
+                    }
+                    ?>
+
                 </fieldset>
             </form>
         </div>
     </div>
-    <?php include("./footer.php"); ?>
+</div>
+<?php include("./footer.php"); ?>
