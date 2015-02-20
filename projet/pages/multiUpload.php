@@ -46,7 +46,7 @@ if (empty($_SESSION['login'])) {
                 <!-- The global file processing state -->
                 <span class="fileupload-process">
                     <div id="total-progress" class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-                        <div class="progress-bar progress-bar-success" style="width:0%;" data-dz-uploadprogress></div>
+                        <div class="progress-bar progress-bar-success" style="width:0%;" data-dz-uploadprogress id="progbar"></div>
                     </div>
                 </span>
             </div>
@@ -161,8 +161,9 @@ if (empty($_SESSION['login'])) {
             myDropzone.on("totaluploadprogress", function (progress) {
                 var perc = (this.getFilesWithStatus(Dropzone.SUCCESS).length + progress * (this.getFilesWithStatus(Dropzone.QUEUED).length + 1) / 100
                         ) / (this.getFilesWithStatus(Dropzone.SUCCESS).length + this.getFilesWithStatus(Dropzone.QUEUED).length + 1);
-                document.querySelector("#total-progress .progress-bar").style.width = perc * 100 + "%";
-                //document.querySelector("#total-progress .progress-bar").style.width = progress + "%";
+                perc=+(perc*100).toFixed(2);
+                document.querySelector("#total-progress .progress-bar").style.width = perc + "%";
+                document.querySelector("#progbar").innerHTML = perc  + "%";
             });
 
             myDropzone.on("sending", function (file) {
