@@ -10,13 +10,15 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     require_once '../php/QueryManager.class.php';
     $id = $_GET['id'];
     $rapport = QueryManager::getRapportById($id);
-    //echo var_dump($rapport);
+    if ($rapport == NULL) {
+        header('Location: ../pages/index.php');
+    }
 }
 ?>
 <div class="container theme-showcase" role="main">
     <div class="panel panel-primary">
         <div class="panel-heading">
-            <h3 >Modifier un rapport <?php //echo $rapport->getAnnee();  ?></h3>
+            <h3 >Modifier un rapport</h3>
         </div>
         <div class="panel-body">
 
