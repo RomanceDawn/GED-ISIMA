@@ -98,17 +98,24 @@ class QueryManager {
 
 	$first = true;
 	// $requete = "SELECT * FROM `ged_rapport` WHERE `nom_origin`LIKE \"%" . $titre . "%\"";
+	try
+	{
+	    $DAO = DataAccessObject::getInstance();
 	$requete = "SELECT * FROM ged_rapport ";
 	if ($motsClefs != "")
        {
+	    $motsClefs=mysql_real_escape_string($motsClefs);
 	    $requete = $requete . "WHERE MATCH(`nom_origin`,`mots_clefs`,`auteur`,`sujet`,`titre`,`description`,`texte`) AGAINST ('" . $motsClefs . "')";
 	    $first = false;
        }
 	if ($auteur != "")
        {
+	    $auteur=mysql_real_escape_string($auteur);
 	    if ($first)
 	   {
+		
 		$requete = $requete . " WHERE MATCH(`auteur`) AGAINST ('" . $auteur . "')";
+		
 		$first = false;
 	   } else
 	   {
@@ -118,6 +125,7 @@ class QueryManager {
        }
 	if ($titre != "")
        {
+	    $titre=mysql_real_escape_string($titre);
 	    if ($first)
 	   {
 		$requete = $requete . " WHERE MATCH(`titre`) AGAINST ('" . $titre . "')";
@@ -130,6 +138,7 @@ class QueryManager {
        }
 	if ($description != "")
        {
+	    $description=mysql_real_escape_string($description);
 	    if ($first)
 	   {
 		$requete = $requete . " WHERE MATCH(`description`) AGAINST ('" . $description . "')";
@@ -157,9 +166,8 @@ class QueryManager {
 
 	echo $requete;
 	//echo '<script type="text/javascript"> alert("'. $requete.'"); </script> ';
-	try
-	{
-	    $DAO = DataAccessObject::getInstance();
+	
+	    
 	    $result = $DAO->query($requete);
 	    $i = 0;
 	    require_once('Rapport.class.php');

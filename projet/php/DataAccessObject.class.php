@@ -104,7 +104,10 @@ class DataAccessObject {
 
         return $this->link->lastInsertId();
     }
+    public function quote($chaine) {
 
+        return $this->link->quote($chaine);
+    }
 }
 
 ?>
