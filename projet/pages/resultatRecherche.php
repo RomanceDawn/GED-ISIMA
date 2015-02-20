@@ -26,7 +26,7 @@
                    $id=$rapports[$i]->getID();
 //                   $str_rapport=serialize($rapports[$i]);
 //                   $_SESSION['rapport']=$str_rapport;
-                    echo "<td><a href=modifierRapport.php>Modifier?id=".$id."</a></td>";
+                    echo "<td><a href=modifierRapport.php?id=".$id.">Modifier</a></td>";
                    echo "<td><a href='#' onClick=supprimerRapport('".$rapports[$i]->getID()."');return false;\">Supprimer</a></td>";
                     //echo "<td><a href=../php/suppressionManager.php>Supprimer</a></td>";
                }
