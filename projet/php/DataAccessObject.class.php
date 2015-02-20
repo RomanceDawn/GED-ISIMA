@@ -108,6 +108,16 @@ class DataAccessObject {
 
         return $this->link->quote($chaine);
     }
+    
+      public static function safe($chaine)
+    {
+	if($chaine=='*')
+	{
+	    $chaine="*'";
+	}
+	$chaine=mysql_real_escape_string($chaine);
+	return $chaine;
+    }
 }
 
 ?>

@@ -98,19 +98,20 @@ class QueryManager {
 
 	$first = true;
 	// $requete = "SELECT * FROM `ged_rapport` WHERE `nom_origin`LIKE \"%" . $titre . "%\"";
+	$requete = "SELECT * FROM `ged_rapport` ";
 	try
 	{
 	    $DAO = DataAccessObject::getInstance();
-	$requete = "SELECT * FROM ged_rapport ";
+	   
 	if ($motsClefs != "")
        {
-	    $motsClefs=mysql_real_escape_string($motsClefs);
+	    $motsClefs=$DAO->safe($motsClefs);
 	    $requete = $requete . "WHERE MATCH(`nom_origin`,`mots_clefs`,`auteur`,`sujet`,`titre`,`description`,`texte`) AGAINST ('" . $motsClefs . "')";
 	    $first = false;
        }
 	if ($auteur != "")
        {
-	    $auteur=mysql_real_escape_string($auteur);
+	    $auteur=$DAO->safe($auteur);
 	    if ($first)
 	   {
 		
@@ -123,9 +124,10 @@ class QueryManager {
 
 	   }
        }
-	if ($titre != "")
+	
+       if ($titre != "")
        {
-	    $titre=mysql_real_escape_string($titre);
+	     $titre=$DAO->safe($titre);
 	    if ($first)
 	   {
 		$requete = $requete . " WHERE MATCH(`titre`) AGAINST ('" . $titre . "')";
@@ -136,16 +138,17 @@ class QueryManager {
 
 	   }
        }
-	if ($description != "")
+     
+	if ($sujet != "")
        {
-	    $description=mysql_real_escape_string($description);
+	   $sujet=$DAO->safe($sujet);
 	    if ($first)
 	   {
-		$requete = $requete . " WHERE MATCH(`description`) AGAINST ('" . $description . "')";
+		$requete = $requete . " WHERE MATCH(`sujet`) AGAINST ('" . $sujet . "')";
 		$first = false;
 	   } else
 	   {
-		$requete = $requete . " AND MATCH(`description`) AGAINST ('" . $description . "')";
+		$requete = $requete . " AND MATCH(`sujet`) AGAINST ('" . $sujet . "')";
 	   }
        }
 	if ($annee != "")
@@ -261,5 +264,5 @@ class QueryManager {
 	    throw new ErrorException("Erreur avec la base de données.", null, null, null, null, $e1);
 	}
     }
-  
+    
 }
