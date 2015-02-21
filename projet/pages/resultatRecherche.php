@@ -12,7 +12,7 @@
            $rapports=$_SESSION['rapports'];
            ?>
            <div class="table-responsive">
-           <table class="table table-striped">
+           <table class="table table-condensed table-striped ">
             <thead>
             <th class=" ">Titre</th>
                    <th>Auteur</th>
