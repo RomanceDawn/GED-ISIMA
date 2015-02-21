@@ -194,7 +194,7 @@ if (empty($_SESSION['login'])) {
 
 
                     var err = document.getElementById('error-files');
-                    err.children[0].innerHTML = "<strong>" + fileserror.length + " erreur(s).</strong> Veuillez passer par la page d'uplaod simple pour ces fichiers :";
+                    err.children[0].innerHTML = "<strong>" + fileserror.length + " erreur(s).</strong> Veuillez passer par la <a href='simpleUpload.php' target='_blank'>page d'uplaod simple </a>pour ces fichiers :";
                     err.children[1].innerHTML = list;
                 }
 

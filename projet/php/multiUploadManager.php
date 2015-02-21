@@ -94,13 +94,19 @@ if (!empty($_FILES)) {
         $texte = PdfParser::parseFile($tempFile);
         $titre = iconv('UTF-8', 'UTF-8//IGNORE', $titre);
         $sujet = iconv('UTF-8', 'UTF-8//IGNORE', $sujet);
-        $date_creation = iconv('UTF-8', 'UTF-8//IGNORE', $date_creation);
-        $date_modification = iconv('UTF-8', 'UTF-8//IGNORE', $date_modification);
+//        $date_creation = iconv('UTF-8', 'UTF-8//IGNORE', $date_creation);
+//        $date_modification = iconv('UTF-8', 'UTF-8//IGNORE', $date_modification);
         $auteur = iconv('UTF-8', 'UTF-8//IGNORE', $auteur);
         $mots_clefs = iconv('UTF-8', 'UTF-8//IGNORE', $mots_clefs);
 
         $texte = iconv('UTF-8', 'UTF-8//IGNORE', $texte);
+    if (intval(substr($date_creation, 0, 4)) < 1993) {
+        unset($date_creation);
+    }
+    if (intval(substr($date_modification, 0, 4)) < 1993) {
 
+        unset($date_modification);
+    }
         $temp = new Rapport($description, $titre, $sujet, $date_creation, $date_modification, $nom_origin, $mots_clefs, $nom_server, $auteur, $ajouteur, $texte);
         $id = QueryManager::insert($temp);
         move_uploaded_file($tempFile, $targetFile);
