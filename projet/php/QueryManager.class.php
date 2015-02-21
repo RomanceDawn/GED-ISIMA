@@ -59,6 +59,132 @@ class QueryManager {
         }
     }
 
+    public static function updateRapport($id,$date_creation,$sujet,$description,$auteur,$titre,$mots_clefs,$texte)
+    {
+	$first=true;
+	$indice=0;
+	$tab = array();
+	$sql = "UPDATE ged_rapport SET ";
+	if($date_creation!="")
+	{
+	    if(!$first)
+	    {
+		$sql=$sql." AND ";
+	    }
+	    else
+	    {
+		$first=false;
+	    }
+	    $sql=$sql." date_creation=?";
+	    $tab[$indice]=$date_creation;
+	    $indice++;
+	}
+	if($sujet!="")
+	{
+	    if(!$first)
+	    {
+		$sql=$sql." AND ";
+	    }
+	    else
+	    {
+		$first=false;
+	    }
+	    $sql=$sql." sujet=?";
+	    $tab[$indice]="'$sujet'";
+	    $indice++;
+	}
+	
+	if($description!="")
+	{
+	    if(!$first)
+	    {
+		$sql=$sql." AND ";
+	    }
+	    else
+	    {
+		$first=false;
+	    }
+	    $sql=$sql." description=?";
+	    $tab[$indice]=$description;
+	    $indice++;
+	}
+	if($auteur!="")
+	{
+	    if(!$first)
+	    {
+		$sql=$sql." AND ";
+	    }
+	    else
+	    {
+		$first=false;
+	    }
+	    $sql=$sql." auteur=?";
+	    $tab[$indice]="'$auteur'";
+	    $indice++;
+	}
+	
+	if($titre!="")
+	{
+	    if(!$first)
+	    {
+		$sql=$sql." AND ";
+	    }
+	    else
+	    {
+		$first=false;
+	    }
+	    $sql=$sql." titre=?";
+	    $tab[$indice]="'$titre'";
+	    $indice++;
+	}
+	if($mots_clefs!="")
+	{
+	    if(!$first)
+	    {
+		$sql=$sql." AND ";
+	    }
+	    else
+	    {
+		$first=false;
+	    }
+	    $sql=$sql." mots_clefs=?";
+	    $tab[$indice]=$mots_clefs;
+	    $indice++;
+	}
+	
+	if($texte!="")
+	{
+	    if(!$first)
+	    {
+		$sql=$sql." AND ";
+	    }
+	    else
+	    {
+		$first=false;
+	    }
+	    $sql=$sql." texte=?";
+	    $tab[$indice]=$texte;
+	    $indice++;
+	}
+	if(!$first)
+	{
+	    try {
+		    $sql=$sql." Where id=?";
+		    $tab[$indice]=$id;
+		    $indice++;
+		    print_r($tab);
+		    echo $sql;
+		    $DAO = DataAccessObject::getInstance();
+
+		    $req = $DAO->prepare($sql);
+		    $req->execute($tab);
+		} catch (Exception $e1) {
+		    throw new ErrorException("Erreur avec la base de données.", null, null, null, null, $e1);
+		}
+	}
+    }
+    
+    
     public static function delete($id) {
         $requete = "DELETE FROM `ged_rapport` WHERE `id` = " . $id;
         try {
