@@ -2,7 +2,7 @@
  <div class="container theme-showcase" role="main">
      <div class="panel panel-primary">
     <div class="panel-heading">
-         <h3>Résultat recherche</h3>
+         <h3>Résultat de recherche</h3>
      </div>
     <div class="panel-body">
        <?php 
@@ -10,32 +10,46 @@
        {
            require_once '../php/Rapport.class.php';
            $rapports=$_SESSION['rapports'];
-           echo "<div class=\"col-md-6\">";
-           echo "<table class=\"table table-striped\">";
-           echo"<tbody>";
+           ?>
+           <div class="table-responsive">
+           <table class="table table-striped">
+            <thead>
+            <th class=" ">Titre</th>
+                   <th>Auteur</th>
+                   <th>Année</th>
+               </thead>
+               <tbody>
+          
+           <?php 
            for($i=0;$i<count($rapports);$i++)
            {
                $rapports[$i]=unserialize($rapports[$i]);
                
-               echo "<tr id=\"".$rapports[$i]->getID()."\">";
-               $nomAffichage="Rapport de ".$rapports[$i]->getAuteur();
-      
-               echo "<td>".$nomAffichage."</td>";
-               echo "<td><a href=../rapports/".$rapports[$i]->getNomServ()." TARGET=\"_blank\">Télécharger</a></td>";
+               ?>
+               <tr id="<?php echo $rapports[$i]->getID();?>" class="<?php if(!$rapports[$i]->isValide() && !empty($_SESSION['login']))  
+                   {?>danger
+                        <?php } ?>">
+
+                   <td><?php echo $rapports[$i]->getTitre();?></td>
+                   <td><?php echo $rapports[$i]->getAuteur();?></td>
+                   <td><?php echo $rapports[$i]->getAnnee();?></td>
+                   <td><a class="btn btn-sm btn-default" href="../rapports/<?php echo $rapports[$i]->getNomServ();?>" target=\"_blank\">Afficher</a></td>
+                   <td><a class="btn btn-sm btn-primary" href="../rapports/<?php echo $rapports[$i]->getNomServ();?>" target=\"_blank\">Télécharger</a></td>
+               <?php 
                if (!empty($_SESSION['login'])) {
                    $id=$rapports[$i]->getID();
-//                   $str_rapport=serialize($rapports[$i]);
-//                   $_SESSION['rapport']=$str_rapport;
-                    echo "<td><a href=modifierRapport.php?id=".$id.">Modifier</a></td>";
-                   echo "<td><a href='#' onClick=supprimerRapport('".$rapports[$i]->getID()."','".$i."');return false;\">Supprimer</a></td>";
-                    //echo "<td><a href=../php/suppressionManager.php>Supprimer</a></td>";
-               }
-               echo "</tr>";
-           }
-           echo "</tbody>";
-           echo "</table>";
-           echo "</div>";
-
+                
+                   ?>
+                      <td><a class="btn btn-default btn-sm" href="modifierRapport.php?id=<?php echo $id;?>">Modifier</a></td>
+                   <td><a class="btn btn-danger btn-sm" href="#" onClick="supprimerRapport('<?php echo $rapports[$i]->getID()?>','<?php echo $i?>');return false;">Supprimer</a></td>
+               <?php } ?>
+               </tr>
+           <?php }
+           ?>
+           </tbody>
+           </table>
+           </div>
+        <?php
        }
        ?>
 </div>

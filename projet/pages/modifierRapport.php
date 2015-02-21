@@ -87,6 +87,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="singlebutton"></label>
                         <div class="col-md-4">
+                            <a class="btn btn-sm btn-default" href="../rapports/<?php echo $rapport->getNomServ();?>" target=\"_blank\">Afficher</a>
                             <button type="submit" class="btn btn-primary">Mettre à jour</button>
                         </div>
                     </div>

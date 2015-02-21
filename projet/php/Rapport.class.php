@@ -16,77 +16,78 @@ class Rapport {
     const TEXTE = 'texte';
 
     protected $attributs = array();
-    public function getTexte()
-    {
-       return  $this->attributs[self::TEXTE];
+
+    public function getTexte() {
+        return $this->attributs[self::TEXTE];
+    }
+
+    public function getNomOrigin() {
+        return $this->attributs[self::NOM_ORIG];
     }
     
-    public function getNomOrigin()
-    {
-       return  $this->attributs[self::NOM_ORIG];
+    public function isValide() {
+        return $this->getAnnee()&& $this->getAuteur() && $this->getTitre();
     }
-    public function getAjouteur()
-    {
-       return  $this->attributs[self::AJOUTEUR];
+
+    public function getAjouteur() {
+        return $this->attributs[self::AJOUTEUR];
     }
-    public function getNomServer()
-    {
-       return  $this->attributs[self::NOM_SERV];
+
+    public function getNomServer() {
+        return $this->attributs[self::NOM_SERV];
     }
-     public function getTitre()
-    {
-       return  $this->attributs[self::TITRE];
+
+    public function getTitre() {
+        return $this->attributs[self::TITRE];
     }
-    public function getNomServ()
-    {
-       return  $this->attributs[self::NOM_SERV];
+
+    public function getNomServ() {
+        return $this->attributs[self::NOM_SERV];
     }
-    
-    public function getAuteur()
-    {
-       return  $this->attributs[self::AUTEUR];
+
+    public function getAuteur() {
+        return $this->attributs[self::AUTEUR];
     }
-    
+
+    public function getAnnee() {
+        if ($this->attributs[self::DATE_CREATION]) {
+            return substr($this->attributs[self::DATE_CREATION], 0, 4);
+        } else if ($this->attributs[self::DATE_MODIFICATION]) {
+            return substr($this->attributs[self::DATE_MODIFICATION], 0, 4);
+        } else {
+            return null;
+        }
+    }
+
     public function getAttributes() {
         return $this->attributs;
     }
-    public function getDateCreation()
-    {
+
+    public function getDateCreation() {
         return $this->attributs[self::DATE_CREATION];
-         
     }
-    public function getDateModification()
-    {
+
+    public function getDateModification() {
         return $this->attributs[self::DATE_MODIFICATION];
-         
     }
-    public function getAnnee()
-    {
-        $annee=substr($this->attributs[self::DATE_CREATION],0,4);
-        return $annee;
-    }
-    
-    public function getSujet()
-    {
+
+    public function getSujet() {
         return $this->attributs[self::SUJET];
     }
-    public function getDescription()
-    {
+
+    public function getDescription() {
         return $this->attributs[self::DESCRIPTION];
     }
-    
-    public function getMotsClefs()
-    {
+
+    public function getMotsClefs() {
         return $this->attributs[self::MOTS_CLES];
     }
-    
-    public function getID()
-    {
+
+    public function getID() {
         return $this->attributs[self::ID];
     }
-    
-    
-    public function __construct($description = NULL, $titre = NULL, $sujet = NULL, $date_creation = NULL, $date_modification = NULL, $nom_origin = NULL, $mots_clefs = NULL, $nom_server = NULL, $auteur = NULL, $ajouteur = NULL ,$texte=NULL,$id=NULL) {
+
+    public function __construct($description = NULL, $titre = NULL, $sujet = NULL, $date_creation = NULL, $date_modification = NULL, $nom_origin = NULL, $mots_clefs = NULL, $nom_server = NULL, $auteur = NULL, $ajouteur = NULL, $texte = NULL, $id = NULL) {
 
         $this->attributs[self::ID] = $id;
         $this->attributs[self::DATE_CREATION] = $date_creation;
