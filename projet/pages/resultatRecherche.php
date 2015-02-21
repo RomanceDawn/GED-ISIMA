@@ -34,7 +34,7 @@
                    <td><?php echo $rapports[$i]->getAuteur();?></td>
                    <td><?php echo $rapports[$i]->getAnnee();?></td>
                    <td><a class="btn btn-sm btn-default" href="../rapports/<?php echo $rapports[$i]->getNomServ();?>" target=\"_blank\">Afficher</a></td>
-                   <td><a class="btn btn-sm btn-primary" href="../rapports/<?php echo $rapports[$i]->getNomServ();?>" target=\"_blank\">Télécharger</a></td>
+                   <td><a class="btn btn-sm btn-primary" href="../php/telechargerManager.php?id=<?php echo $rapports[$i]->getId();?>">Télécharger</a></td>
                <?php 
                if (!empty($_SESSION['login'])) {
                    $id=$rapports[$i]->getID();
