@@ -21,5 +21,8 @@ $mots_clefs = $_POST['motscles'];
 $texte = $_POST['texte'];
 $id = $_POST['id'];
 
+
+
+$_SESSION['success'] = 1;
 QueryManager::updateRapport($id,$date_creation,$sujet,$description,$auteur,$titre,$mots_clefs,$texte);
 header("Location: ../pages/modifierRapport.php?id=$id");

@@ -23,7 +23,14 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
         <div class="panel-body">
 
             <form class="form-horizontal" method="post" action="../php/modifierRapportManager.php" enctype="multipart/form-data" id="file-form">
-                <fieldset>
+                <?php if (isset($_SESSION['success'])) {
+                        echo '<div class="alert alert-success text-center">
+                        <strong>OK!</strong> Modification des informations réussies.
+                      </div>';
+                        unset($_SESSION['success']);
+                    }
+                ?>
+		<fieldset>
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="titre">Titre</label>
                         <div class="col-md-4">
