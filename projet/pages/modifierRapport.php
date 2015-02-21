@@ -22,7 +22,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
         </div>
         <div class="panel-body">
 
-            <form class="form-horizontal" method="post" action="../php/simpleUploadManager.php" enctype="multipart/form-data" id="file-form">
+            <form class="form-horizontal" method="post" action="../php/modifierRapportManager.php" enctype="multipart/form-data" id="file-form">
                 <fieldset>
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="titre">Titre</label>
@@ -42,7 +42,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                         <label class="col-md-4 control-label" for="date">Année</label>
                         <div class="col-md-2">
                             <select id="date" name="date" class="form-control">
-                                <option value="<?php echo substr($rapport->getDateCreation(), 0, 4); ?>"></option>
+                                <option value="<?php echo $rapport->getAnnee(); ?>"></option>
                                 <?php
                                 $tmp = intval(date('o'));
                                 for ($index = $tmp; $index >= 1993; $index--) {
@@ -76,6 +76,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                             <textarea class="form-control" id="texte" name="texte" placeholder="Copiez collez ici tout le texte du document."><?php echo $rapport->getTexte(); ?></textarea>
                         </div>
                     </div>
+		    <input type="hidden" name="id" value=<?php echo $id ?>
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="singlebutton"></label>
                         <div class="col-md-4">
