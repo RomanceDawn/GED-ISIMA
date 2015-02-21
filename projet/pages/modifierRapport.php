@@ -41,8 +41,8 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="date">Année</label>
                         <div class="col-md-2">
-                            <select id="date" name="date" class="form-control">
-                                <option value="<?php echo $rapport->getAnnee(); ?>"></option>
+                            <select id="date" name="date" class="form-control">	
+                                <option selected><?php echo $rapport->getAnnee(); ?></option>
                                 <?php
                                 $tmp = intval(date('o'));
                                 for ($index = $tmp; $index >= 1993; $index--) {
