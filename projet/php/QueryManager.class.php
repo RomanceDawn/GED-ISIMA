@@ -1,4 +1,3 @@
-
 <?php
 
 //require  './DataAccessObject.class.php';
@@ -69,13 +68,13 @@ class QueryManager {
 	{
 	    if(!$first)
 	    {
-		$sql=$sql." AND ";
+		$sql=$sql.",";
 	    }
 	    else
 	    {
 		$first=false;
 	    }
-	    $sql=$sql." date_creation=?";
+	    $sql=$sql."date_creation=?";
 	    $tab[$indice]=$date_creation;
 	    $indice++;
 	}
@@ -83,14 +82,14 @@ class QueryManager {
 	{
 	    if(!$first)
 	    {
-		$sql=$sql." AND ";
+		$sql=$sql.",";
 	    }
 	    else
 	    {
 		$first=false;
 	    }
-	    $sql=$sql." sujet=?";
-	    $tab[$indice]="'$sujet'";
+	    $sql=$sql."sujet=?";
+	    $tab[$indice]=$sujet;
 	    $indice++;
 	}
 	
@@ -98,13 +97,13 @@ class QueryManager {
 	{
 	    if(!$first)
 	    {
-		$sql=$sql." AND ";
+		$sql=$sql.",";
 	    }
 	    else
 	    {
 		$first=false;
 	    }
-	    $sql=$sql." description=?";
+	    $sql=$sql."description=?";
 	    $tab[$indice]=$description;
 	    $indice++;
 	}
@@ -112,14 +111,14 @@ class QueryManager {
 	{
 	    if(!$first)
 	    {
-		$sql=$sql." AND ";
+		$sql=$sql.",";
 	    }
 	    else
 	    {
 		$first=false;
 	    }
-	    $sql=$sql." auteur=?";
-	    $tab[$indice]="'$auteur'";
+	    $sql=$sql."auteur=?";
+	    $tab[$indice]=$auteur;
 	    $indice++;
 	}
 	
@@ -127,27 +126,27 @@ class QueryManager {
 	{
 	    if(!$first)
 	    {
-		$sql=$sql." AND ";
+		$sql=$sql.",";
 	    }
 	    else
 	    {
 		$first=false;
 	    }
-	    $sql=$sql." titre=?";
-	    $tab[$indice]="'$titre'";
+	    $sql=$sql."titre=?";
+	    $tab[$indice]=$titre;
 	    $indice++;
 	}
 	if($mots_clefs!="")
 	{
 	    if(!$first)
 	    {
-		$sql=$sql." AND ";
+		$sql=$sql.",";
 	    }
 	    else
 	    {
 		$first=false;
 	    }
-	    $sql=$sql." mots_clefs=?";
+	    $sql=$sql."mots_clefs=?";
 	    $tab[$indice]=$mots_clefs;
 	    $indice++;
 	}
@@ -156,13 +155,13 @@ class QueryManager {
 	{
 	    if(!$first)
 	    {
-		$sql=$sql." AND ";
+		$sql=$sql.",";
 	    }
 	    else
 	    {
 		$first=false;
 	    }
-	    $sql=$sql." texte=?";
+	    $sql=$sql."texte=?";
 	    $tab[$indice]=$texte;
 	    $indice++;
 	}
@@ -172,8 +171,6 @@ class QueryManager {
 		    $sql=$sql." Where id=?";
 		    $tab[$indice]=$id;
 		    $indice++;
-		    print_r($tab);
-		    echo $sql;
 		    $DAO = DataAccessObject::getInstance();
 
 		    $req = $DAO->prepare($sql);

@@ -53,9 +53,9 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="sujet" value="<?php echo strip_tags($rapport->getSujet()); ?>">Sujet</label>
+                        <label class="col-md-4 control-label" for="sujet">Sujet</label>
                         <div class="col-md-4">
-                            <input type="text" name="sujet" class="form-control" id="sujet" placeholder="">
+                            <input type="text" name="sujet" class="form-control" id="sujet" placeholder="" value="<?php echo strip_tags($rapport->getSujet()); ?>" >
                         </div>
                     </div>
                     <div class="form-group">
