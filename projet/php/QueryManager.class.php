@@ -263,7 +263,7 @@ class QueryManager {
             //   $requete = "SELECT * FROM ged_rapport WHERE MATCH(`nom_origin`,`auteur`,`sujet`,`titre`,`description`,`texte`) AGAINST ('".$motsClefs.",".$annee."')";
 
 
-            echo $requete;
+            //echo $requete;
             //echo '<script type="text/javascript"> alert("'. $requete.'"); </script> ';
 
 
@@ -272,9 +272,9 @@ class QueryManager {
             require_once('Rapport.class.php');
             $rapports = "";
             while ($res = $DAO->fetch($result)) {
-                echo "res : " . $res['id'];
+//                echo "res : " . $res['id'];
                 $rapport = new Rapport($res['description'], $res['titre'], $res['sujet'], $res['date_creation'], $res['date_modification'], $res['nom_origin'], $res['mots_clefs'], $res['nom_server'], $res['auteur'], $res['ajouteur'], "", $res['id']);
-                echo $rapport->getID() . " <br />";
+                //echo $rapport->getID() . " <br />";
                 $str_rapport = serialize($rapport);
                 $rapports[$i] = $str_rapport;
                 $i++;
