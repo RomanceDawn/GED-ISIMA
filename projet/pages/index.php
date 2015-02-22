@@ -7,7 +7,7 @@
 <p class="text-center">Ici on va expliquer des trucs.</p> 
 
     <div class="jumbotron " style="  position: absolute;
-  top: 50%;
+  top: 40%;
   left:50%;
   transform: translate(-50%,-50%);
   width: 80%">
@@ -21,7 +21,7 @@
                     <div class="center col-md-12 input-group">
                         <input class="form-control" type="text" name="motsClefs" value="" id="motsClefs" />
                         <span class="input-group-btn">
-                            <button class="btn btn-default" type="submit">Recherche rapide</button>
+                            <button class="btn btn-default" type="submit">Rechercher !</button>
                         </span>
                     </div>
                 </div>           

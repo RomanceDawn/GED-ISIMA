@@ -27,7 +27,7 @@ session_start();
         <script src="../javascript/bootstrap.min.js"></script>
         <script src="../javascript/dropzone.js"></script>
         <script src="../javascript/script.js"></script>
-        <!-- Custom styles for this template -->
+
 
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -53,7 +53,7 @@ session_start();
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="recherche.php">Recherche</a></li>
+                        <li><a href="recherche.php">Recherche avancée</a></li>
                         <?php
                         if (!empty($_SESSION['login'])) {
                             echo"

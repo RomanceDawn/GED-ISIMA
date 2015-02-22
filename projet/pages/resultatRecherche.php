@@ -17,9 +17,9 @@
                     <table class="table table-condensed table-striped container" >
                         <thead >
                         <th class="col-xs-1 text-center ">N°</th>
-                        <th class=" col-sm-5  text-center" >Titre</th>
-                        <th class="col-sm-2 col-xs-2 text-center">Auteur</th>
-                        <th class="text-center">Année</th>
+                        <th class=" col-xs-5  text-center" >Titre</th>
+                        <th class="col-xs-2 text-center">Auteur</th>
+                        <th class="col-xs-1 text-center">Année</th>
                         </thead>
                         <tbody>
 
@@ -31,7 +31,7 @@
                                     ?>warning
                                     <?php } ?>">
                                     <td class="text-center"><?php echo $rapports[$i]->getID(); ?></td>
-                                    <td class="text-center"><a class="" href="../rapports/<?php echo $rapports[$i]->getNomServ(); ?>" target=\"_blank\"><?php echo $rapports[$i]->getTitre(); ?></a></td>
+                                    <td class=""><a class="" href="../rapports/<?php echo $rapports[$i]->getNomServ(); ?>" target=\"_blank\"><?php echo $rapports[$i]->getTitre(); ?></a></td>
                                     <td><?php echo $rapports[$i]->getAuteur(); ?></td>
                                     <td class="text-center"><?php echo $rapports[$i]->getAnnee(); ?></td>
                                     <td><a class="btn btn-sm btn-default" href="../rapports/<?php echo $rapports[$i]->getNomServ(); ?>" target=\"_blank\">Afficher</a></td>
