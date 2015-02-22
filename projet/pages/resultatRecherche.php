@@ -31,7 +31,7 @@
                                     ?>warning
                                     <?php } ?>">
                                     <td class="text-center"><?php echo $rapports[$i]->getID(); ?></td>
-                                    <td><a class="" href="../rapports/<?php echo $rapports[$i]->getNomServ(); ?>" target=\"_blank\"><?php echo $rapports[$i]->getTitre(); ?></a></td>
+                                    <td class="text-center"><a class="" href="../rapports/<?php echo $rapports[$i]->getNomServ(); ?>" target=\"_blank\"><?php echo $rapports[$i]->getTitre(); ?></a></td>
                                     <td><?php echo $rapports[$i]->getAuteur(); ?></td>
                                     <td class="text-center"><?php echo $rapports[$i]->getAnnee(); ?></td>
                                     <td><a class="btn btn-sm btn-default" href="../rapports/<?php echo $rapports[$i]->getNomServ(); ?>" target=\"_blank\">Afficher</a></td>
