@@ -109,3 +109,8 @@ textArea.vertic{
     from { transform: scale(1) rotate(0deg);}
     to { transform: scale(1) rotate(360deg);}
 }
+
+td{
+word-break: break-all;
+    word-wrap: break-word;
+}

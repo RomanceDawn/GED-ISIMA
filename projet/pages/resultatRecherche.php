@@ -11,13 +11,14 @@
                 require_once '../php/Rapport.class.php';
                 $rapports = $_SESSION['rapports'];
                 ?>
-            <div class="alert alert-info text-center"><strong><?php echo count($rapports);?></strong> résultat(s).
+                <div class="alert alert-info text-center"><strong><?php echo count($rapports); ?></strong> résultat(s).
                 </div>
                 <div class="table-responsive">
-                    <table class="table table-condensed table-striped ">
+                    <table class="table table-condensed table-striped container" >
                         <thead >
-                        <th class="text-center">Titre</th>
-                        <th class="text-center">Auteur</th>
+                        <th class="col-xs-1 text-center ">N°</th>
+                        <th class=" col-sm-5  text-center" >Titre</th>
+                        <th class="col-sm-2 col-xs-2 text-center">Auteur</th>
                         <th class="text-center">Année</th>
                         </thead>
                         <tbody>
@@ -27,32 +28,32 @@
                                 $rapports[$i] = unserialize($rapports[$i]);
                                 ?>
                                 <tr id="<?php echo $rapports[$i]->getID(); ?>" class="<?php if (!$rapports[$i]->isValide() && !empty($_SESSION['login'])) {
-                                    ?>danger
-                                <?php } ?>">
-
-                                    <td class="col-md-3 "><?php echo $rapports[$i]->getTitre(); ?></td>
+                                    ?>warning
+                                    <?php } ?>">
+                                    <td class="text-center"><?php echo $rapports[$i]->getID(); ?></td>
+                                    <td><a class="" href="../rapports/<?php echo $rapports[$i]->getNomServ(); ?>" target=\"_blank\"><?php echo $rapports[$i]->getTitre(); ?></a></td>
                                     <td><?php echo $rapports[$i]->getAuteur(); ?></td>
-                                    <td><?php echo $rapports[$i]->getAnnee(); ?></td>
+                                    <td class="text-center"><?php echo $rapports[$i]->getAnnee(); ?></td>
                                     <td><a class="btn btn-sm btn-default" href="../rapports/<?php echo $rapports[$i]->getNomServ(); ?>" target=\"_blank\">Afficher</a></td>
                                     <td><a class="btn btn-sm btn-primary" href="../php/telechargerManager.php?id=<?php echo $rapports[$i]->getId(); ?>">Télécharger</a></td>
-        <?php
-        if (!empty($_SESSION['login'])) {
-            $id = $rapports[$i]->getID();
-            ?>
+                                    <?php
+                                    if (!empty($_SESSION['login'])) {
+                                        $id = $rapports[$i]->getID();
+                                        ?>
                                         <td><a class="btn btn-default btn-sm" href="modifierRapport.php?id=<?php echo $id; ?>">Modifier</a></td>
                                         <td><a class="btn btn-danger btn-sm" href="#" onClick="supprimerRapport('<?php echo $rapports[$i]->getID() ?>', '<?php echo $i ?>');
-                                       return false;">Supprimer</a></td>
-                                    <?php } ?>
+                                                            return false;">Supprimer</a></td>
+                                           <?php } ?>
                                 </tr>
-                                <?php }
-                                ?>
+                            <?php }
+                            ?>
                         </tbody>
                     </table>
                 </div>
-                            <?php
-                        }
-                        ?>
+                <?php
+            }
+            ?>
         </div>
     </div>
 </div>
-            <?php include("./footer.php"); ?>
+<?php include("./footer.php"); ?>

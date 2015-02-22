@@ -18,23 +18,30 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 <div class="container theme-showcase" role="main">
     <div class="panel panel-primary">
         <div class="panel-heading">
-            <h3 >Modifier un rapport</h3>
+            <h3 >Modifier rapport n°<?php echo $rapport->getID();?></h3>
         </div>
         <div class="panel-body">
 
             <form class="form-horizontal" method="post" action="../php/modifierRapportManager.php" enctype="multipart/form-data" id="file-form">
-                <?php if (isset($_SESSION['success'])) {
-                        echo '<div class="alert alert-success text-center">
+                <?php
+                if (isset($_SESSION['success'])) {
+                    echo '<div class="alert alert-success text-center">
                         <strong>OK!</strong> Modification des informations réussies.
                       </div>';
-                        unset($_SESSION['success']);
-                    }
+                    unset($_SESSION['success']);
+                }
                 ?>
-		<fieldset>
+                <fieldset>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="singlebutton"></label>
+                        <div class="col-md-4">
+                            <a class="btn btn-sm btn-default" href="../rapports/<?php echo $rapport->getNomServ(); ?>" target=\"_blank\">Afficher le document</a>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="titre">Titre</label>
                         <div class="col-md-4">
-                            <input type="text" class="form-control" name="titre" id="titre" placeholder="" value="<?php echo  strip_tags($rapport->getTitre()) ; ?>">
+                            <input type="text" class="form-control" name="titre" id="titre" placeholder="" value="<?php echo strip_tags($rapport->getTitre()); ?>">
                         </div>
                     </div>
 
@@ -83,11 +90,10 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                             <textarea class="form-control" id="texte" name="texte" placeholder="Copiez collez ici tout le texte du document."><?php echo $rapport->getTexte(); ?></textarea>
                         </div>
                     </div>
-		    <input type="hidden" name="id" value=<?php echo $id ?>
-                    <div class="form-group">
+                    <input type="hidden" name="id" value=<?php echo $id ?>
+                           <div class="form-group">
                         <label class="col-md-4 control-label" for="singlebutton"></label>
                         <div class="col-md-4">
-                            <a class="btn btn-sm btn-default" href="../rapports/<?php echo $rapport->getNomServ();?>" target=\"_blank\">Afficher</a>
                             <button type="submit" class="btn btn-primary">Mettre à jour</button>
                         </div>
                     </div>
