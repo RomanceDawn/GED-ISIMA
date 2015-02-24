@@ -19,7 +19,7 @@
                 <div class="col-md-8 col-md-offset-2">
 
                     <div class="center col-md-12 input-group">
-                        <input class="form-control" type="text" name="motsClefs" value="" id="motsClefs" />
+                        <input class="form-control" type="text" name="motsClefs" value="" id="motsClefs" autofocus />
                         <span class="input-group-btn">
                             <button class="btn btn-default" type="submit">Rechercher !</button>
                         </span>
