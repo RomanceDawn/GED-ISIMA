@@ -10,8 +10,22 @@
             if (!empty($_SESSION['rapports'])) {
                 require_once '../php/Rapport.class.php';
                 $rapports = $_SESSION['rapports'];
+		
+		$nbRapports= count($rapports);
+		$page=1;
+		if(isset($_GET['numPage']))
+		{
+		    $page=$_GET['numPage'];
+		    if($page<1 || $page>ceil($nbRapports/20))
+		    {
+			$page=1;
+		    }
+		}
+			
+		
+		
                 ?>
-                <div class="alert alert-info text-center"><strong><?php echo count($rapports); ?></strong> résultat(s).
+                <div class="alert alert-info text-center"><strong><?php echo $nbRapports; ?></strong> résultat(s).
                 </div>
                 <div class="table-responsive">
                     <table class="table table-condensed table-striped container" >
@@ -24,7 +38,7 @@
                         <tbody>
 
                             <?php
-                            for ($i = 0; $i < count($rapports); $i++) {
+                            for ($i = ($page-1)*20; $i < $nbRapports && $i<$page *20; $i++) {
                                 $rapports[$i] = unserialize($rapports[$i]);
                                 ?>
                                 <tr id="<?php echo $rapports[$i]->getID(); ?>" class="<?php if (!$rapports[$i]->isValide() && !empty($_SESSION['login'])) {
@@ -49,7 +63,35 @@
                             ?>
                         </tbody>
                     </table>
+		    
+		    
                 </div>
+		<nav>
+		    <ul class="pagination pagination-lg">
+			<li><a href="resultatRecherche.php?numPage=<?php echo max($page-1,1)?> " aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+		      
+		    <?php 
+			for($i=1;$i<=ceil($nbRapports/20);$i++)
+			{
+		    ?>
+		      <li
+			  <?php
+			  if($i==$page)
+			  {
+			      echo ' class="active"';
+			  }
+			  ?>
+			  ><a href="resultatRecherche.php?numPage=<?php echo $i?> "><?php echo $i?></a></li>
+		      
+		      
+		    <?php
+			}
+		      
+		    ?>
+		  
+		      <li><a href="resultatRecherche.php?numPage=<?php echo min($page+1,ceil($nbRapports/20))?> " aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+		    </ul>
+		</nav>
                 <?php
             }
             ?>
