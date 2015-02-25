@@ -5,6 +5,14 @@
             <h3>Connexion</h3>
         </div>
         <div class="panel-body">
+              <?php
+                    if (isset($_SESSION['errorConnexion'])) {
+                                echo '<div class="alert alert-danger text-center">'
+                                . 'Erreur : Verifiez le mot de passe et l\'identifiant'
+                                . '</div>';
+                                unset($_SESSION['errorConnexion']);
+                    }
+                            ?>
             <form class="form-horizontal" method="post" action="../php/connexionManager.php" enctype="multipart/form-data">
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="login">Identifiant</label>

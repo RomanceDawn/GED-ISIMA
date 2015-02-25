@@ -10,7 +10,7 @@ if (!empty($_SESSION['login'])) {
     $password = $_POST["password"];
     $password=md5($password);
     $co = QueryManager::connection("$login", "$password");
-    echo "co : " . $co;
+    //echo "co : " . $co;
     if ($co != "") {
 
         $_SESSION['login'] = $login;
@@ -22,5 +22,7 @@ if (!empty($_SESSION['login'])) {
     //print_r($_POST);
     header('HTTP/1.1 500 Internal Server Error');
     header('Content-type: text/plain');
+     $_SESSION['errorConnexion'] = true;
+    header('Location: ../pages/connexion.php');
     exit("Erreur lors de la connexion.");
 }

@@ -4,6 +4,7 @@ session_start();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
+<!--    Site réalisé par Amine BELKEDAH et Hans CANONICO 2014-2015 -->
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
