@@ -36,7 +36,6 @@ CREATE TABLE IF NOT EXISTS `ged_compte` (
 --
 
 INSERT INTO `ged_compte` (`login`, `password`) VALUES
-('amine', '30d2310007b75bf0180f5ed831f20fdb'),
 ('admin', '21232f297a57a5a743894a0e4a801fc3');
 
 -- --------------------------------------------------------

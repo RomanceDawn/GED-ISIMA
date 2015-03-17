@@ -2,7 +2,6 @@ function supprimerRapport(id, indice)
 {
     if (confirm("Supprimer le fichier n°"+id+" ?")) {
 
-
         $.ajax({
             url: '../php/deleteManager.php',
             type: 'POST',
