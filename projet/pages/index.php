@@ -1,3 +1,4 @@
+<!--the index of the site-->
 <?php include("header.php"); ?>
 
 

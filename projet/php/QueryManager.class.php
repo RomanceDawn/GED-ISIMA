@@ -9,6 +9,13 @@ include_once '../php/Rapport.class.php';
  */
 class QueryManager {
 
+    
+    /**
+     * Insert a report in the BDD
+     * @param Rapport $object
+     * @return type
+     * @throws ErrorException
+     */
     public static function insert(Rapport $object) {
         $keys = "(";
         $values = "(";
@@ -58,6 +65,19 @@ class QueryManager {
         }
     }
 
+    
+    /**
+     * Update a report with the new informations
+     * @param type $id
+     * @param type $date_creation
+     * @param type $sujet
+     * @param type $description
+     * @param type $auteur
+     * @param type $titre
+     * @param type $mots_clefs
+     * @param type $texte
+     * @throws ErrorException
+     */
     public static function updateRapport($id,$date_creation,$sujet,$description,$auteur,$titre,$mots_clefs,$texte)
     {
 	$first=true;
@@ -181,7 +201,12 @@ class QueryManager {
 	}
     }
     
-    
+    /**
+     * Delete a report with the given id
+     * @param type $id 
+     * @return type
+     * @throws ErrorException
+     */
     public static function delete($id) {
         $requete = "DELETE FROM `ged_rapport` WHERE `id` = " . $id;
         try {
@@ -193,6 +218,14 @@ class QueryManager {
         }
     }
 
+    
+   
+    /**
+     * Give the server name of the report with the id given
+     * @param type $id
+     * @return type
+     * @throws ErrorException
+     */
     public static function getServer_Name($id) {
 
         $requete = "SELECT `nom_server` FROM `ged_rapport` WHERE `id` = " . $id;
@@ -205,7 +238,18 @@ class QueryManager {
             throw new ErrorException("Erreur avec la base de données.", null, null, null, null, $e1);
         }
     }
-
+   
+    /**
+     * Search a report
+     * @param type $motsClefs
+     * @param type $annee
+     * @param type $auteur
+     * @param type $titre
+     * @param type $sujet
+     * @param type $description
+     * @return type
+     * @throws ErrorException
+     */
     public static function search($motsClefs, $annee, $auteur, $titre, $sujet, $description) {
 
         $first = true;
@@ -285,6 +329,13 @@ class QueryManager {
         }
     }
 
+    /**
+     * Sarch in the BDD if there is a match with the given login and password
+     * @param type $login
+     * @param type $password
+     * @return login
+     * @throws ErrorException
+     */
     public static function connection($login, $password) {
 
         $requete = "SELECT `login` FROM `ged_compte` WHERE `login`=\"" . $login . "\" AND `password`=\"" . $password . "\"";
@@ -300,14 +351,19 @@ class QueryManager {
         }
     }
 
+    /**
+     * search a user in the BDD
+     * @param type $login
+     * @param type $password
+     * @return type
+     * @throws ErrorException
+     */
     public static function searchUser($login, $password = NULL) {
         $requete = "SELECT `login` FROM `ged_compte` WHERE `login`=\"" . $login . "\"";
         if ($password != "") {
             $password = md5($password);
             $requete = $requete . " AND `password`=\"" . $password . "\"";
         }
-
-
         try {
             $DAO = DataAccessObject::getInstance();
             $result = $DAO->query($requete);
@@ -318,6 +374,13 @@ class QueryManager {
         }
     }
 
+    
+    /**
+     * update the password
+     * @param type $login
+     * @param type $newPassword
+     * @throws ErrorException
+     */
     public static function updatePasswordUser($login, $newPassword) {
         try {
             $DAO = DataAccessObject::getInstance();
@@ -330,6 +393,13 @@ class QueryManager {
         }
     }
 
+    /**
+     * insert a user
+     * @param type $login
+     * @param type $password
+     * @return type
+     * @throws ErrorException
+     */
     public static function insertUser($login, $password) {
         $requete = "INSERT INTO `ged_compte` (login,password) values(:login,:password)";
         try {
@@ -346,6 +416,13 @@ class QueryManager {
         }
     }
 
+    
+    /**
+     * Get a report with the Id given
+     * @param type $id
+     * @return \Rapport
+     * @throws ErrorException
+     */
     public static function getRapportById($id) {
         $requete = "SELECT * FROM `ged_rapport` WHERE `id`=\"" . $id . "\"";
         try {

@@ -1,3 +1,4 @@
+<!--the page to update the password-->
 <?php include("header.php"); ?>
 <div class="container theme-showcase" role="main">
 

@@ -1,4 +1,4 @@
-
+<!--the bottom of the page-->
 
 <footer class="footer">
     <div class="container" style="padding: 5px; ">

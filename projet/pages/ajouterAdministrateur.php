@@ -1,3 +1,4 @@
+<!--the page to add an admin-->
 <?php include("header.php"); ?>
 
 

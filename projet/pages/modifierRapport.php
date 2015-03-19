@@ -1,3 +1,4 @@
+<!--the page to update a report-->
 <?php
 include("./header.php");
 

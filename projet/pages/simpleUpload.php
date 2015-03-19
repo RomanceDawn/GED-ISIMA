@@ -1,3 +1,4 @@
+<!--The page to upload a report-->
 <?php
 include("./header.php");
 

@@ -1,3 +1,4 @@
+<!--the page to make a search-->
 <?php include("./header.php"); ?>
 <div class="container theme-showcase" role="main">
 
